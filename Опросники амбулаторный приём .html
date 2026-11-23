@@ -1,0 +1,1769 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Выдох">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0B3D2E">
+<meta name="referrer" content="no-referrer">
+<title>Выдох — пространство внимания к себе</title>
+<!-- Google Fonts используются только для типографики. Ответы никуда не передаются. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap">
+<style>
+/* Палитра, типографика и система движения */
+:root{--emerald:#0B3D2E;--forest:#1F6B4A;--grass:#3FA66B;--mint:#BFE8D0;--paper:#F2FAF5;--lime:#D8E86B;--ink:#163D30;--muted:#496658;--amber:#79521D;--amber-bg:#F7EACD;--ease-out:cubic-bezier(.22,1,.36,1);--ease-in-out:cubic-bezier(.65,0,.35,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);--t-fast:180ms;--t-base:420ms;--t-slow:800ms;--t-ambient:36s;--motion:1}
+*{box-sizing:border-box}html{min-width:320px;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-text-size-adjust:100%}body{margin:0;min-height:100dvh}button,a,summary{-webkit-tap-highlight-color:transparent}button,a{touch-action:manipulation}button{font:inherit;color:inherit;cursor:pointer}button:disabled{cursor:wait}button{border:0}a{color:var(--forest);text-underline-offset:4px}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--forest);outline-offset:5px}h1,h2,h3,p{margin:0}h1,h2{font-family:'Playfair Display',Georgia,serif;font-weight:400;letter-spacing:-.045em;text-wrap:balance}h1{font-size:clamp(52px,8vw,100px);line-height:1.02}h2{font-size:clamp(33px,5vw,54px);line-height:1.13}h3{font-size:17px;line-height:1.4}p{line-height:1.75}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}svg{display:block}button svg{flex-shrink:0}[hidden]{display:none!important}
+/* Фон: внешний контейнер отвечает за параллакс, внутренний — за покачивание. */
+.nature{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;isolation:isolate;animation:fade-in 1.6s both;contain:strict}.sky{position:absolute;inset:-20%;background:radial-gradient(ellipse at 65% 22%,#F9F9D4 0,transparent 40%),radial-gradient(ellipse at 7% 80%,#8FCAA6 0,transparent 45%),linear-gradient(130deg,#D9EFE1,#F2FAF5 55%,#BDDDC6);animation:sky var(--t-ambient) ease-in-out infinite alternate}.rays{position:absolute;inset:-40%;background:repeating-linear-gradient(119deg,transparent 0 10%,#fff9 11%,transparent 14% 29%);opacity:.18;filter:blur(8px);transform:rotate(-8deg);animation:light 32s ease-in-out infinite alternate}.layer{position:absolute;inset:0;contain:layout style}.layer>svg{width:100%;height:100%;overflow:visible;transform-origin:50% 100%;animation:grow 1.8s var(--ease-out) both}.far{opacity:.18;filter:blur(5px)}.mid{opacity:.26}.near{opacity:.65}.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 11s ease-in-out infinite alternate}.sway.second{animation-duration:14s;animation-delay:-5s}.sway.third{animation-duration:9s;animation-delay:-8s}.pollen{position:absolute;inset:0}.particle{position:absolute;left:var(--x);bottom:-20px;width:var(--size);height:var(--size);border-radius:50%;background:#D8E86B;filter:blur(1px);opacity:0;animation:float var(--duration) linear var(--delay) infinite}.nature.celebrate .particle{background:#fff6ab;box-shadow:0 0 12px #D8E86B}.paused .nature *,.paused .sway{animation-play-state:paused!important}
+/* Оболочка и стеклянные поверхности */
+.shell{width:min(1120px,100%);margin:auto;padding:calc(28px + env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}.header{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-size:27px;letter-spacing:-1px}.brand svg{width:31px;height:35px}.header-note{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.header-actions{display:flex;align-items:center;gap:12px}.motion{width:38px;height:38px;border-radius:50%;border:1px solid #356E4D35;background:#ffffff70;display:grid;place-items:center}.motion svg{width:16px;height:16px}.stage{min-height:calc(100dvh - 170px);display:grid;align-items:center;padding:40px 0}.screen{width:100%;transform-origin:center;animation:enter var(--t-base) var(--ease-out) both}.stage.backward .screen{animation-name:enter-back}.screen.leaving{pointer-events:none;animation:leave 200ms var(--ease-out) both}.stage.backward .screen.leaving{animation-name:leave-back}.glass{background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);border:1px solid #FFFFFFD9;border-radius:24px;box-shadow:0 24px 70px #154A2E0B,0 5px 18px #154A2E08,inset 0 1px 0 #fff;overflow:hidden}.eyebrow{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--forest);margin-bottom:20px}.eyebrow:before{content:'';width:6px;height:6px;background:var(--forest);border-radius:50%}.muted{color:var(--muted)}.welcome{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:24px}.welcome-copy{padding:30px 0}.welcome h1 em{font-weight:400;color:var(--forest)}.word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}.word>span{display:block;animation:word-in 1s var(--ease-out) both;animation-delay:calc(220ms + var(--i)*75ms)}.intro{max-width:415px;font-size:15px;margin:26px 0 23px;animation:fade-up 1s 600ms var(--ease-out) both}.meta{font-size:11px;font-weight:500;letter-spacing:.01em;margin-bottom:30px;color:var(--muted);animation:fade-up 1s 700ms var(--ease-out) both}.button{position:relative;display:inline-flex;justify-content:center;align-items:center;gap:22px;min-height:54px;border-radius:50px;padding:15px 26px;font-size:13px;font-weight:600;overflow:hidden;isolation:isolate;transition:transform var(--t-fast) var(--ease-out),box-shadow var(--t-base),background var(--t-base)}.button:hover{transform:translateY(-2px);box-shadow:0 9px 24px #16483120}.button:active{transform:scale(.98)}.button svg{width:19px;height:19px}.primary{background:var(--emerald);color:#fff;box-shadow:0 6px 18px #0B3D2E17}.secondary{background:#fff9;border:1px solid #1F6B4A30}.text-button{background:transparent;padding:12px 0;font-size:12px;color:var(--muted)}.text-button span{background:linear-gradient(var(--forest),var(--forest)) 0 100%/0 1px no-repeat;transition:background-size var(--t-base)}.text-button:hover span{background-size:100% 1px}.welcome .primary{animation:fade-up 1s 800ms var(--ease-out) both}.private{display:flex;align-items:center;gap:7px;font-size:10px;color:var(--muted);margin-top:17px}.private svg{width:13px;height:13px}.art{position:relative;aspect-ratio:.83;max-height:470px;display:grid;place-items:center}.art:before{content:'';position:absolute;inset:9% 3% 4%;border-radius:50% 50% 44% 44%;background:radial-gradient(ellipse at 40% 10%,#F7F9D8,#D5E9CD 55%,#A5CCA9);box-shadow:inset 0 0 40px #fff8;opacity:.7}.art>svg{position:relative;width:92%;height:100%;overflow:visible;animation:grow 1.8s var(--ease-out) both}.art-caption{position:absolute;bottom:3%;left:5%;right:0;display:flex;justify-content:center;gap:12px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--forest)}.art-caption:before{content:'';width:22px;height:1px;background:currentColor;align-self:center}.important{margin-top:30px;padding:18px 22px;font-size:12px;color:var(--muted)}summary{cursor:pointer;font-weight:600;color:var(--ink);line-height:1.6}details p{padding-top:12px;font-size:12px;line-height:1.8}.notice{margin-top:20px;padding:13px 16px;background:var(--amber-bg);color:#664818;border-radius:14px;font-size:12px;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:20px;font-size:10px;color:var(--muted);line-height:1.6}.footer span:last-child{text-align:right}
+/* Прогресс-лоза */
+.progress{max-width:720px;margin:0 auto 25px}.progress-label{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);gap:15px}.vine{width:100%;height:38px;overflow:visible}.vine-track{fill:none;stroke:#1F6B4A1C;stroke-width:2}.vine-line{fill:none;stroke:var(--forest);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 950ms var(--ease-out)}.vine-leaf{fill:var(--forest);opacity:0;transform:scale(0);transform-box:fill-box;transform-origin:center;transition:opacity var(--t-base),transform 700ms var(--ease-spring)}.vine-leaf.open{opacity:.75;transform:scale(1)}.vine-flower{fill:var(--lime);stroke:var(--forest);stroke-width:.8;transform:scale(0);transform-box:fill-box;transform-origin:center;transition:transform 800ms var(--ease-spring)}.vine-flower.open{transform:scale(1)}
+/* Вопросы и промежуточные экраны */
+.question,.breath{max-width:720px;margin:auto;padding:clamp(24px,5vw,48px)}.question .eyebrow{justify-content:space-between;margin-bottom:23px}.question .eyebrow:before{display:none}.question h2{font-family:Inter,Arial,sans-serif;font-size:clamp(20px,2.8vw,28px);font-weight:500;letter-spacing:-.035em;line-height:1.5;overflow-wrap:anywhere;text-wrap:pretty}.question-context{font-size:11px;color:var(--muted);margin:12px 0 25px;line-height:1.65}.answers{display:grid;gap:10px;margin-top:24px}.answer{position:relative;display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:15px 19px;text-align:left;border-radius:19px;border:1px solid #22553C24;background:#FFFFFF87;font-size:13px;line-height:1.5;transition:transform var(--t-fast) var(--ease-out),box-shadow var(--t-base),border-color var(--t-base);animation:fade-up 550ms var(--ease-out) both;animation-delay:calc(var(--i)*55ms)}.answer:before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,#CDEBD8,#E8F2CE);opacity:0;transition:opacity var(--t-base)}.answer:hover{transform:translateY(-2px);border-color:#1F6B4A70;box-shadow:0 5px 16px #0B3D2E09}.answer:active{transform:scale(.98)}.answer[aria-checked=true]{border-color:#1F6B4A80;box-shadow:0 0 0 3px #BFE8D040}.answer[aria-checked=true]:before{opacity:1}.answer>*{position:relative}.radio{width:21px;height:21px;border:1px solid #1F6B4A60;border-radius:50%;flex-shrink:0;background:#fff8;display:grid;place-items:center;transition:background var(--t-base)}.radio svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset var(--t-base) var(--ease-out)}[aria-checked=true] .radio{background:var(--forest)}[aria-checked=true] .radio svg{stroke-dashoffset:0}.answer-text{flex:1}.key{font-size:10px;color:var(--muted)}.navigation{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:20px}.hint{font-size:12px;min-height:19px;color:#79521D;margin-top:14px}.has-answer .next{animation:ready 550ms var(--ease-out)}.shake{animation:shake 400ms ease-in-out!important}.demo-tag{display:inline-block;padding:5px 8px;border:1px solid #79521D30;border-radius:7px;font-size:9px;letter-spacing:.05em;color:#79521D;background:#FAF1DC;margin-bottom:15px}.breath{text-align:center;padding-top:34px;padding-bottom:34px}.plant-icon{width:100px;height:115px;margin:0 auto 16px;overflow:visible;transform-origin:50% 100%;animation:bloom 1.1s var(--ease-spring) both}.breath .eyebrow{justify-content:center}.breath h2{animation:reveal 850ms var(--ease-out) both}.breath-description{font-size:14px;color:var(--muted);margin:15px auto;max-width:460px}.instruction{font-size:12px;line-height:1.8;max-width:480px;margin:20px auto 25px;padding:18px;border-radius:16px;background:#ECF5EA}.breath .notice{text-align:left;margin-bottom:20px}.breath .navigation{margin-top:25px}.ripple{position:absolute;z-index:1;pointer-events:none;width:var(--diameter);height:var(--diameter);left:var(--rx);top:var(--ry);border-radius:50%;background:#BFE8D04D;transform:translate(-50%,-50%) scale(0);animation:ripple 700ms var(--ease-out) forwards}.petal{position:absolute;pointer-events:none;width:5px;height:9px;left:50%;top:50%;border-radius:70% 0 70% 0;background:var(--grass);z-index:2;animation:petal 650ms var(--ease-out) forwards}
+/* Результаты: карточки, кольца и полосы */
+.results{max-width:900px;margin:auto}.result-heading{text-align:center;margin-bottom:30px}.result-heading .eyebrow{justify-content:center}.result-heading p{font-size:13px;color:var(--muted);margin:15px auto 0;max-width:510px}.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.result-card{padding:24px;display:grid;grid-template-columns:74px 1fr;gap:19px;align-items:center;animation:fade-up 750ms var(--ease-out) both;animation-delay:calc(var(--i)*90ms)}.result-card.warm{--result-color:var(--amber);background:#FFF9ECC7}.result-card{--result-color:var(--forest)}.ring{position:relative;width:74px;height:74px}.ring svg{width:100%;height:100%;transform:rotate(-90deg)}.ring-track{fill:none;stroke:#1F6B4A15;stroke-width:4}.ring-value{fill:none;stroke:var(--result-color);stroke-width:4;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.2s var(--ease-out)}.ring-number{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font-size:25px;letter-spacing:-1px;color:var(--result-color)}.ring-number small{font-size:9px;letter-spacing:0;color:var(--muted);margin-top:1px}.result-card h3{font-size:13px}.result-card .metric{font-size:10px;color:var(--muted);margin-top:3px}.interpretation{font-size:11px;line-height:1.65;color:var(--result-color);margin-top:9px}.bar{height:3px;background:#1F6B4A13;border-radius:3px;overflow:hidden;margin-top:13px}.bar-fill{height:100%;background:var(--result-color);transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease-out)}.unavailable .ring-track{stroke-dasharray:2 4}.unavailable .ring-number{font-size:24px}.result-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px}.result-actions .button{font-size:11px;gap:10px;padding:13px 21px;min-height:49px}.result-note{margin:24px auto 0;text-align:center;max-width:670px;font-size:11px;color:var(--muted);line-height:1.8}.restart{text-align:center;margin-top:18px}.restart-confirm{padding:20px;margin-top:15px;text-align:center;font-size:12px}.restart-confirm .button{margin:12px 5px 0;min-height:42px}.print-date{display:none}.toast{position:fixed;bottom:calc(25px + env(safe-area-inset-bottom));left:50%;z-index:10;max-width:calc(100% - 40px);padding:14px 22px;border-radius:16px;background:var(--emerald);color:#fff;box-shadow:0 12px 40px #0B3D2E30;font-size:12px;line-height:1.6;opacity:0;transform:translate(-50%,20px) scale(.96);transition:opacity var(--t-base),transform var(--t-base) var(--ease-spring);pointer-events:none}.toast.visible{opacity:1;transform:translate(-50%,0) scale(1)}.copy-panel{margin-top:18px;padding:18px}.copy-panel label{display:block;font-size:12px;margin-bottom:10px}.copy-panel textarea{width:100%;min-height:170px;padding:12px;border:1px solid #1F6B4A50;border-radius:12px;background:white;color:var(--ink);font:12px/1.6 Inter,Arial,sans-serif;resize:vertical}
+/* Пол и возраст: обязательный шаг перед взрослыми опросниками. */
+.profile-card{max-width:720px;margin:auto;padding:clamp(24px,5vw,48px)}
+.profile-description{font-size:14px;color:var(--muted);margin:16px 0 26px;max-width:490px}
+.profile-sex{border:0;margin:0;padding:0;min-width:0}
+.profile-sex legend,.age-label{font-size:13px;font-weight:600;margin-bottom:12px;display:block}
+.profile-sex-options{display:flex;flex-wrap:wrap;gap:10px}
+.profile-choice{position:relative;cursor:pointer;flex:1;min-width:130px}
+.profile-choice input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.profile-choice span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:54px;padding:14px;border:1px solid #22553C40;border-radius:16px;background:#fff8;font-size:12px;line-height:1.5;transition:background var(--t-base),border-color var(--t-base)}
+.profile-choice input:checked+span{background:linear-gradient(110deg,#CDEBD8,#E8F2CE);border-color:var(--forest)}
+.profile-choice input:focus-visible+span{outline:3px solid var(--forest);outline-offset:4px}
+.age-input{width:100%;max-width:240px;min-height:54px;border:1px solid #22553C50;border-radius:16px;background:#fff9;color:var(--ink);padding:14px 18px;font:16px Inter,Arial,sans-serif}
+.age-input:focus-visible{outline:3px solid var(--forest);outline-offset:4px}
+.age-input[aria-invalid=true]{border-color:var(--amber)}
+.field-error{min-height:20px;color:var(--amber);font-size:12px;line-height:1.6;margin:8px 0 15px}
+.profile-rule{font-size:11px;color:var(--muted);background:#ECF5EA;padding:15px;border-radius:14px;line-height:1.8}
+.result-heading .profile-summary{font-size:12px;margin-top:12px}
+@media(max-width:420px){.profile-choice{min-width:100%;}.age-input{max-width:none}.profile-card{padding:25px 21px}}
+@media print{.profile-card{display:none!important}.result-heading .profile-summary{font-size:9pt;margin-top:3mm}}
+/* Блики жидкого стекла и спокойная реакция на выбор. */
+.glass{background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(255,255,255,.52) 55%,rgba(242,250,245,.72));-webkit-backdrop-filter:blur(24px) saturate(150%);backdrop-filter:blur(24px) saturate(150%);border-color:rgba(255,255,255,.92);box-shadow:0 25px 70px #154A2E0D,0 5px 18px #154A2E09,inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff80}
+.choice-echo{position:absolute;right:20px;top:12px;font-size:21px;line-height:1;pointer-events:none;z-index:3;animation:choice-echo 850ms var(--ease-out) both}
+@keyframes choice-echo{0%{opacity:0;transform:translateY(8px) scale(.6) rotate(-12deg)}25%{opacity:.9;transform:translateY(-4px) scale(1.12) rotate(4deg)}100%{opacity:0;transform:translateY(-34px) scale(.8) rotate(12deg)}}
+.doctor-summary{margin-top:22px;padding:24px;border-radius:20px}
+.doctor-summary h3{font-size:14px;margin-bottom:14px}
+.doctor-summary-text{white-space:pre-line;font-size:12px;line-height:1.8;color:var(--muted)}
+html.calm .choice-echo{display:none}
+@media(prefers-reduced-motion:reduce){.choice-echo{display:none}}
+@media print{.doctor-summary{padding:3mm;margin-top:4mm;break-inside:avoid}.doctor-summary h3{font-size:9pt;margin-bottom:2mm}.doctor-summary-text{font-size:7.5pt;line-height:1.4}.doctor-summary-text{white-space:pre-line}.result-card{padding:3mm}.result-note{margin-top:3mm;font-size:7pt}.choice-echo{display:none}}
+/* Движение. Прорисовка SVG — осознанное исключение из transform/opacity. */
+@keyframes fade-in{from{opacity:0}to{opacity:1}}@keyframes fade-up{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}@keyframes word-in{from{opacity:0;transform:translateY(105%)}to{opacity:1;transform:translateY(0)}}@keyframes sky{to{transform:translate(4%,-3%) scale(1.04)}}@keyframes light{to{transform:translateX(5%) rotate(-3deg);opacity:.25}}@keyframes grow{from{opacity:0;transform:scale(.88) rotate(-4deg)}to{opacity:1;transform:scale(1) rotate(0)}}@keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2.5deg)}}@keyframes float{0%{opacity:0;transform:translate3d(0,0,0)}20%{opacity:.5}60%{opacity:.2}80%{opacity:.45}100%{opacity:0;transform:translate3d(38px,-100dvh,0)}}@keyframes enter{from{opacity:0;transform:translateX(24px);filter:blur(2px)}to{opacity:1;transform:translateX(0);filter:blur(0)}}@keyframes leave{to{opacity:0;transform:translateX(-24px);filter:blur(2px)}}@keyframes enter-back{from{opacity:0;transform:translateX(-24px);filter:blur(2px)}to{opacity:1;transform:translateX(0);filter:blur(0)}}@keyframes leave-back{to{opacity:0;transform:translateX(24px);filter:blur(2px)}}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}@keyframes ready{50%{transform:scale(1.035);box-shadow:0 0 0 7px #BFE8D080}}@keyframes ripple{to{transform:translate(-50%,-50%) scale(1);opacity:0}}@keyframes petal{to{transform:translate(var(--px),var(--py)) rotate(var(--pr));opacity:0}}@keyframes bloom{from{opacity:0;transform:scale(.65) rotate(-8deg)}to{opacity:1;transform:scale(1) rotate(0)}}@keyframes reveal{from{clip-path:inset(0 0 100% 0);transform:translateY(8px)}to{clip-path:inset(0);transform:translateY(0)}}
+::view-transition-old(root){animation:leave var(--t-base) var(--ease-out) both}::view-transition-new(root){animation:enter var(--t-base) var(--ease-out) both}html.back-transition::view-transition-old(root){animation-name:leave-back}html.back-transition::view-transition-new(root){animation-name:enter-back}.native-transition .screen{animation:none}
+@media(min-width:1400px){.shell{max-width:1190px}.welcome{gap:70px}}@media(max-width:700px){.shell{padding-inline:max(20px,env(safe-area-inset-left))}.stage{padding:32px 0;min-height:calc(100dvh - 150px)}.welcome{grid-template-columns:1fr;gap:0}.welcome-copy{position:relative;z-index:1;padding:15px 2px 0}.welcome h1{max-width:390px}.intro{max-width:340px;font-size:14px;margin-top:20px}.art{position:absolute;width:220px;height:285px;right:-45px;top:70px;opacity:.17;z-index:0}.art-caption{display:none}.welcome{position:relative}.important{position:relative;margin-top:27px}.meta{font-size:10px}.header-note{display:none}.header{gap:10px}.results-grid{grid-template-columns:1fr}.result-card{padding:20px;grid-template-columns:64px 1fr}.ring{width:64px;height:64px}.near{opacity:.35}.question,.breath{padding:25px 21px}.answer{padding:14px;min-height:56px}.key{display:none}.footer{font-size:9px}.result-actions{display:grid;grid-template-columns:1fr}.result-actions .button{width:100%}.notice{font-size:11px}.question h2{min-height:0}.result-heading h2{font-size:38px}.navigation .button{padding-inline:20px}.breath .plant-icon{height:90px}.breath-description{font-size:13px}}
+/* Ручной спокойный режим и системная настройка имеют одинаковый приоритет. */
+html.calm *,html.calm *:before,html.calm *:after{animation:none!important;transition:opacity 150ms ease!important;scroll-behavior:auto!important}html.calm .particle,html.calm .ripple,html.calm .petal{display:none}html.calm .layer{transform:none!important}html.calm .screen.leaving{opacity:0}html.calm .toast.visible{transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:opacity 150ms ease!important;scroll-behavior:auto!important}.particle,.ripple,.petal{display:none}.layer{transform:none!important}.screen.leaving{opacity:0}.toast.visible{transform:translate(-50%,0)}::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+@page{size:A4 portrait;margin:12mm}
+@media print{*{animation:none!important;transition:none!important;filter:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}html,body{background:white!important;color:#182C23!important;min-height:0!important;font-size:10pt}.nature,.header-actions,.footer,.result-actions,.restart,.toast,.copy-panel,.progress,.notice a{display:none!important}.shell{padding:0;width:100%;max-width:none}.header{margin-bottom:7mm}.brand{font-size:19pt}.stage{display:block;min-height:0;padding:0}.results{max-width:none}.result-heading{margin-bottom:5mm}.result-heading h2{font-size:26pt}.result-heading p{font-size:9pt;max-width:none;margin-top:3mm}.result-heading .eyebrow{display:none}.print-date{display:block;font-size:8pt;color:#333;margin-top:3mm}.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:3mm}.result-card{padding:4mm;grid-template-columns:16mm 1fr;gap:3mm;background:white!important;border:1px solid #CBD5CD!important;border-radius:3mm;break-inside:avoid}.ring{width:16mm;height:16mm}.ring-number{font-size:18pt}.ring-number small{font-size:7pt}.result-card h3{font-size:9pt}.result-card .metric{font-size:7pt}.interpretation{font-size:8pt;line-height:1.45}.bar{display:none}.result-note{font-size:8pt;line-height:1.5;margin-top:5mm;max-width:none}.notice{padding:3mm;margin-top:3mm;font-size:8pt;background:white;border:1px solid #CCC;color:#333}.glass{background:white;border-color:#CBD5CD}.screen{transform:none!important;opacity:1!important}.welcome,.breath,.question{display:none!important}body:not(.show-results) .stage:after{content:'Чтобы сохранить отчёт, сначала завершите опрос.';font-size:12pt}}
+
+/* Ботаническая студия. Все растения — самостоятельные векторные формы. */
+:root{--t-base:640ms;--t-slow:1120ms;--t-ambient:40s;--ease-spring:cubic-bezier(.25,1.18,.4,1);--paper:#EEF3E9;--muted:#456052}
+html{background:#E8EFE4}body{isolation:isolate}
+.nature{animation-duration:2200ms}
+.sky{inset:-18%;background:radial-gradient(ellipse at 53% 35%,#F9FAEE 0%,#EDF3E6 27%,transparent 63%),radial-gradient(ellipse at 94% 12%,#EDD8B5A6 0%,transparent 44%),radial-gradient(ellipse at 5% 81%,#7F9E8580 0%,transparent 48%),linear-gradient(124deg,#B3C6B2,#DAE5D2 48%,#A7BFAF);animation-duration:40s}
+.rays{opacity:.12;background:linear-gradient(119deg,transparent 23%,#FFFFEB70 32%,transparent 39%,#FFF9DD50 52%,transparent 61%);filter:blur(14px);animation-duration:40s}
+.studio-light{position:absolute;border-radius:50%;pointer-events:none;animation:studio-light 34s ease-in-out infinite alternate;contain:strict}
+.studio-light-warm{inset:-32% -18% 26% 35%;background:radial-gradient(ellipse,#FFF1D0A6,transparent 66%);mix-blend-mode:screen}
+.studio-light-cool{inset:35% 43% -30% -25%;background:radial-gradient(ellipse,#D7FFF47A,transparent 68%);animation-duration:39s;animation-delay:-17s}
+.studio-haze{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 44%,#F7FAEE68 0%,#F2F7E92E 35%,transparent 70%),linear-gradient(0deg,#E8F0E54A,transparent 40%,#F9F5E62E);pointer-events:none}
+.studio-glass{position:absolute;inset:12px;border:1px solid #FFFFFF52;border-radius:34px;background:linear-gradient(118deg,#FFFFFF1A,transparent 30%,transparent 66%,#FFFFFF0A);box-shadow:inset 1px 1px 0 #FFFFFF4D,inset -1px -1px 0 #FFFFFF1A;pointer-events:none}
+.studio-rim{position:absolute;top:9%;bottom:9%;width:1px;background:linear-gradient(transparent,#FFF7D9B3 24%,#E9FFF67A 71%,transparent);box-shadow:0 0 18px 4px #FFF7E52B;opacity:.7}
+.studio-rim-left{left:4.6%;transform:rotate(7deg)}.studio-rim-right{right:4.6%;transform:rotate(-7deg)}
+.far{opacity:.27;filter:blur(10px) saturate(.75)}.mid{opacity:.43;filter:blur(2.4px) saturate(.86)}.near{opacity:.62;filter:blur(.35px) saturate(.88)}
+.sway{animation-duration:17s;animation-timing-function:ease-in-out}.sway.second{animation-duration:21s;animation-delay:-8s}.sway.third{animation-duration:19s;animation-delay:-12s}
+@keyframes sway{from{transform:rotate(-1.1deg)}to{transform:rotate(1.5deg)}}
+@keyframes studio-light{from{transform:translate3d(-1%,1%,0) scale(1)}to{transform:translate3d(2%,-2%,0) scale(1.04)}}
+.particle{background:#EFF6CF;filter:blur(1.5px);box-shadow:0 0 9px #FFFFE833}
+.glass{background:linear-gradient(128deg,rgba(255,255,255,.8),rgba(255,255,255,.57) 42%,rgba(245,250,240,.65));-webkit-backdrop-filter:blur(28px) saturate(125%);backdrop-filter:blur(28px) saturate(125%);border:1px solid #FFFFFFC9;box-shadow:0 30px 85px #173D2B0D,0 8px 25px #163D2B08,inset 0 1px 0 #FFFFFFF5,inset 1px 0 0 #FFFFFF66,inset 0 -1px 0 #FFFFFF80}
+.art:before{inset:4% 0 1%;border-radius:48% 48% 35% 35%;background:radial-gradient(ellipse at 63% 12%,#FFF2CC85,transparent 56%),linear-gradient(135deg,#FFFFFF60,#E0E9D21F 66%,#C1D3C23B);border:1px solid #FFFFFFA8;box-shadow:inset 0 1px 0 #FFFFFFCC,inset 0 -30px 70px #ABC4AC20,0 24px 75px #30503A08;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.art>svg{filter:drop-shadow(4px 14px 12px #14392716)}
+.stage{align-items:center;isolation:isolate}.stage>.screen{grid-area:1/1;min-width:0}
+.screen{animation:studio-enter 1100ms var(--ease-out) both}
+@keyframes studio-enter{from{opacity:0;transform:translate3d(0,9px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.stage>.screen.settled,.answer.settled{animation:none!important}
+.stage.flow-transition>.screen{animation:none!important;will-change:opacity,transform}
+.question{display:grid;align-content:stretch}
+.question-content{grid-area:1/1;display:flex;flex-direction:column;min-width:0}
+.question-content>.navigation{margin-top:auto;padding-top:12px}
+.question .question-context{margin:12px 0 16px;font-size:11px;letter-spacing:.015em}
+.question .answers{margin-top:14px}
+.question-morph .question-content{will-change:opacity,transform}
+.question-morph .answer{animation:none!important}
+.question-measure{position:fixed;left:0;top:0;visibility:hidden;opacity:0;pointer-events:none;z-index:-100;contain:layout style}
+.question-measure .question{display:block!important;width:100%;min-height:0!important;margin:0}
+.question-measure .question-content{display:flex}
+.question-measure *{animation:none!important;transition:none!important}
+.answer{background:#FFFFFF5C;border-color:#42715124;box-shadow:inset 0 1px 0 #FFFFFFB3;transition:transform 440ms var(--ease-out),box-shadow 720ms var(--ease-out),border-color 720ms var(--ease-out)}
+.answer:before{background:linear-gradient(115deg,#D3E8DACC,#ECF1D3AA);transition:opacity 740ms var(--ease-out)}
+.answer:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 #FFFFFFE6,0 7px 22px #244D310A}
+.answer[aria-checked=true]{border-color:#42715170;box-shadow:0 0 0 3px #BCD9BE21,inset 0 1px 0 #FFFFFFE6,0 7px 22px #32543B0B}
+.radio{transition:background 540ms var(--ease-out),border-color 540ms var(--ease-out)}.radio svg{transition:stroke-dashoffset 640ms var(--ease-out)}
+.button{transition:transform 440ms var(--ease-out),box-shadow 700ms var(--ease-out),background 700ms var(--ease-out)}
+.button:hover{transform:translateY(-1px)}.button:active,.answer:active{transform:scale(.99)}
+.has-answer .next{animation:studio-ready 850ms var(--ease-out)}
+@keyframes studio-ready{0%,100%{transform:scale(1)}45%{transform:scale(1.012);box-shadow:0 0 0 5px #C3DFC333}}
+.choice-echo{opacity:.65;animation-duration:1000ms;font-size:18px}
+.ripple{background:#E3F2DC55;animation-duration:1000ms}.petal{opacity:.6;animation-duration:950ms}
+@media(max-width:700px){.far{opacity:.2;filter:blur(8px)}.mid{opacity:.32;filter:blur(3px)}.near{opacity:.38}.studio-glass{inset:7px;border-radius:25px}.studio-rim{opacity:.4}.glass{-webkit-backdrop-filter:blur(20px) saturate(125%);backdrop-filter:blur(20px) saturate(125%)}.art{opacity:.22}.question .question-context{margin-bottom:10px}}
+@media(prefers-reduced-motion:reduce){.studio-light{animation:none}.stage>.screen{animation:fade-in 150ms ease both!important}.stage.flow-transition>.screen{animation:none!important}.question-morph .question-content{will-change:auto}.studio-glass{box-shadow:none}}
+html.calm .studio-light{animation:none!important}
+@media print{.glass{background:white!important;border:1px solid #CBD5CD;box-shadow:none!important}.question-measure{display:none!important}.stage>.screen{grid-area:auto!important;will-change:auto!important;transform:none!important}}
+
+
+/* iPhone: безопасные поля, большие зоны касания и независимая нижняя панель. */
+html{overflow-x:clip;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-height:100vh;min-height:100svh;min-height:100dvh}
+#selection-effects{position:fixed;inset:0;z-index:9;overflow:hidden;pointer-events:none;contain:strict}
+.selection-particle{position:absolute;width:17px;height:24px;margin:-12px 0 0 -8px;opacity:0;pointer-events:none;transform-origin:50% 60%;will-change:transform,opacity}
+.selection-particle svg{width:100%;height:100%;overflow:visible}
+.selection-particle.effect-wind{width:20px;height:28px}
+.selection-particle.effect-orbit{width:13px;height:20px}
+.selection-particle.effect-bloom{width:14px;height:21px;filter:drop-shadow(0 0 4px #E0E9B54D)}
+.selection-particle.effect-water{width:28px;height:28px;border-radius:50%;border:1px solid #5C946866;box-shadow:inset 0 1px 3px #FFFFFF99,0 0 10px #D3E9DA2E;margin:-14px}
+.phone-dock{position:fixed;z-index:8;left:0;right:0;bottom:0;padding:12px max(16px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:linear-gradient(180deg,#F2F8EEB8,#EEF5ECED);border-top:1px solid #FFFFFFD9;box-shadow:0 -10px 40px #163D2E08;-webkit-backdrop-filter:blur(20px) saturate(130%);backdrop-filter:blur(20px) saturate(130%)}
+.phone-dock-inner{display:grid;grid-template-columns:minmax(90px,.65fr) minmax(160px,1.35fr);gap:12px;width:min(680px,100%);margin:auto}
+.phone-dock .button{min-height:54px;font-size:16px;border-radius:20px}
+.phone-dock .button:disabled{opacity:.64;cursor:default}
+.phone-question{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+.phone-question .question-content>.navigation{display:none}
+@media(max-width:1024px) and (pointer:coarse){
+ .shell{width:100%;padding-top:calc(16px + env(safe-area-inset-top));padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:18px}
+ .header{min-height:44px}.brand{font-size:26px}.motion{width:44px;height:44px}.header-note{display:none}
+ .stage{min-height:calc(100svh - 150px);min-height:calc(100dvh - 150px);padding:25px 0;align-items:start}
+ .phone-question .stage{min-height:0;padding:20px 0 12px}
+ .progress{margin-bottom:13px}.progress-label{font-size:12px}.vine{height:30px}
+ .question,.breath,.profile-card{width:100%;padding:24px 20px;border-radius:25px}
+ .question h2{font-size:clamp(21px,5.2vw,25px);line-height:1.45;letter-spacing:-.025em}
+ .question .eyebrow{font-size:11px;margin-bottom:18px;letter-spacing:.1em}
+ .question .question-context{font-size:13px;line-height:1.6;margin:12px 0 14px}
+ .answer{font-size:16px;line-height:1.5;min-height:58px;padding:15px 14px;gap:12px;border-radius:18px}
+ .answers{gap:10px}.answer-text{min-width:0;overflow-wrap:break-word}.radio{width:23px;height:23px}.key{display:none}
+ .answer:hover,.button:hover{transform:none;box-shadow:none}.answer[aria-checked=true]{box-shadow:inset 0 1px 0 #FFFFFFE6,0 0 0 3px #BCD9BE21}
+ .answer:active,.button:active{transform:scale(.99)}
+ .button{font-size:16px;min-height:54px}.text-button{font-size:14px;min-height:48px;padding:12px 4px}
+ .hint{font-size:13px;margin-top:16px;line-height:1.6;min-height:22px}
+ .welcome h1{font-size:clamp(40px,10.5vw,60px)}.intro{font-size:16px;line-height:1.75}.meta{font-size:12px;line-height:1.8}.private{font-size:12px;line-height:1.6;align-items:flex-start}.private svg{margin-top:3px;flex-shrink:0}
+ .important{padding:18px}.important summary{font-size:15px;min-height:28px}details p{font-size:14px}.notice{font-size:13px}
+ .breath-description,.profile-description{font-size:16px;line-height:1.7}.instruction{font-size:14px;line-height:1.8;padding:17px}.breath .muted{font-size:13px!important}
+ .profile-sex legend,.age-label{font-size:16px}.profile-choice span{font-size:15px;min-height:56px}.profile-sex-options{gap:12px}.field-error,.profile-rule{font-size:13px}
+ .age-input,.copy-panel textarea{font-size:17px;min-height:56px}.copy-panel label{font-size:14px}.copy-panel textarea{min-height:210px;line-height:1.6}
+ .results-grid{grid-template-columns:1fr;gap:12px}.result-card{padding:22px 18px;grid-template-columns:68px minmax(0,1fr);gap:16px}.ring{width:68px;height:68px}
+ .result-card h3{font-size:16px}.result-card .metric{font-size:13px;line-height:1.6}.interpretation{font-size:14px;line-height:1.65}.result-heading p{font-size:15px}
+ .result-actions{display:grid;grid-template-columns:1fr;gap:12px}.result-actions .button{width:100%;min-height:56px;font-size:16px}
+ .result-note{font-size:13px;line-height:1.75}.doctor-summary{padding:21px 18px}.doctor-summary h3{font-size:16px}.doctor-summary-text{font-size:14px;line-height:1.8;overflow-wrap:break-word}
+ .toast{font-size:14px;bottom:calc(18px + env(safe-area-inset-bottom));width:max-content;max-width:calc(100% - 32px)}.phone-question .toast{bottom:calc(100px + env(safe-area-inset-bottom))}
+ .footer{font-size:11px}.far{filter:blur(6px)}.studio-glass{inset:7px}.art{right:0;max-width:58vw;opacity:.18}
+ .glass{-webkit-backdrop-filter:blur(18px) saturate(125%);backdrop-filter:blur(18px) saturate(125%)}
+}
+@media(max-width:360px) and (pointer:coarse){.shell{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}.question,.profile-card,.breath{padding:22px 16px}.answer{font-size:15px;padding:14px 12px}.phone-dock-inner{grid-template-columns:minmax(80px,.65fr) minmax(150px,1.35fr);gap:10px}.phone-dock .button{padding-inline:17px;font-size:15px}.question h2{font-size:21px}.welcome h1{font-size:40px}}
+@media(orientation:landscape) and (max-height:520px) and (pointer:coarse){.stage{padding-top:16px;align-items:start}.shell{padding-top:max(10px,env(safe-area-inset-top))}.question .answers{grid-template-columns:1fr 1fr}.question h2{font-size:21px}.question,.breath,.profile-card{max-width:760px}.phone-dock{padding-top:8px}.phone-dock .button{min-height:48px}.phone-question{padding-bottom:calc(80px + env(safe-area-inset-bottom))}}
+@media(prefers-reduced-motion:reduce){#selection-effects{display:none}.selection-particle{will-change:auto}}
+html.calm #selection-effects{display:none}
+@media print{#phone-dock,#selection-effects{display:none!important}.phone-question{padding-bottom:0!important}.phone-question .stage{padding:0}.result-card{padding:4mm;grid-template-columns:16mm 1fr}.result-card h3{font-size:9pt}.result-card .metric{font-size:7pt}.interpretation{font-size:8pt}.doctor-summary-text{font-size:7.5pt}}
+
+</style>
+</head>
+<body>
+<!-- Векторный гербарий: общие определения не загружают внешние изображения. -->
+<svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden"><defs>
+<linearGradient id="leaf-green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6EA879"/><stop offset=".5" stop-color="#27704D"/><stop offset="1" stop-color="#0B3D2E"/></linearGradient>
+<linearGradient id="leaf-light" x1="0" y1="0" x2="1" y2=".7"><stop stop-color="#B7D796"/><stop offset="1" stop-color="#3E8054"/></linearGradient>
+
+<linearGradient id="leaf-satin" x1="0" y1=".15" x2="1" y2=".8"><stop stop-color="#82A77B"/><stop offset=".28" stop-color="#3E7651"/><stop offset=".54" stop-color="#1E593D"/><stop offset=".8" stop-color="#386D48"/><stop offset="1" stop-color="#123F30"/></linearGradient>
+<linearGradient id="leaf-fold" x1="0" y1="0" x2="1" y2=".3"><stop stop-color="#142F25" stop-opacity=".38"/><stop offset=".5" stop-color="#172D23" stop-opacity="0"/><stop offset="1" stop-color="#DBE6B1" stop-opacity=".2"/></linearGradient>
+<radialGradient id="leaf-wax" cx=".3" cy=".25" r=".8"><stop stop-color="#D9E9B8" stop-opacity=".23"/><stop offset=".55" stop-color="#9AB788" stop-opacity=".02"/><stop offset="1" stop-color="#082F22" stop-opacity=".15"/></radialGradient>
+<linearGradient id="pot-stone" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#BDC4B4"/><stop offset=".3" stop-color="#E4E6D7"/><stop offset=".65" stop-color="#D4D8C8"/><stop offset="1" stop-color="#A1B09F"/></linearGradient>
+<symbol id="banana" viewBox="0 0 180 370"><path d="M86 345C44 322 17 261 22 194 25 127 50 49 94 5c37 49 66 119 62 186l-11-14 9 31c-3 45-19 89-44 120l-6-22 2 29-20 10Z" fill="url(#leaf-satin)" stroke="#CADBA6" stroke-opacity=".35" stroke-width=".7"/><path d="M88 344C82 236 81 115 94 5c37 49 66 119 62 186l-11-14 9 31c-3 45-19 89-44 120l-6-22 2 29-18 9Z" fill="url(#leaf-fold)"/><path d="M86 345C44 322 17 261 22 194 25 127 50 49 94 5c37 49 66 119 62 186l-11-14 9 31c-3 45-19 89-44 120l-6-22 2 29-20 10Z" fill="url(#leaf-wax)"/><path d="M88 48.0Q77.0 29.0 63.5 24.0M89 51.0Q101.2 35.0 113.5 29.0M88 62.0Q73.7 43.0 56.2 38.0M89 65.0Q104.9 49.0 120.8 43.0M88 76.0Q70.6 57.0 49.3 52.0M89 79.0Q108.3 63.0 127.7 57.0M88 90.0Q67.8 71.0 43.1 66.0M89 93.0Q111.5 77.0 133.9 71.0M88 104.0Q65.3 85.0 37.5 80.0M89 107.0Q114.2 91.0 139.5 85.0M88 118.0Q63.2 99.0 32.8 94.0M89 121.0Q116.6 105.0 144.2 99.0M88 132.0Q61.4 113.0 28.9 108.0M89 135.0Q118.5 119.0 148.1 113.0M88 146.0Q60.1 127.0 26.0 122.0M89 149.0Q120.0 133.0 151.0 127.0M88 160.0Q59.2 141.0 24.0 136.0M89 163.0Q121.0 147.0 153.0 141.0M88 174.0Q58.8 155.0 23.1 150.0M89 177.0Q121.5 161.0 153.9 155.0M88 188.0Q58.8 169.0 23.2 164.0M89 191.0Q121.4 175.0 153.8 169.0M88 202.0Q59.3 183.0 24.3 178.0M89 205.0Q120.9 189.0 152.7 183.0M88 216.0Q60.3 197.0 26.4 192.0M89 219.0Q119.8 203.0 150.6 197.0M88 230.0Q61.6 211.0 29.4 206.0M89 233.0Q118.3 217.0 147.6 211.0M88 244.0Q63.4 225.0 33.4 220.0M89 247.0Q116.3 231.0 143.6 225.0M88 258.0Q65.6 239.0 38.3 234.0M89 261.0Q113.9 245.0 138.7 239.0M88 272.0Q68.2 253.0 43.9 248.0M89 275.0Q111.0 259.0 133.1 253.0M88 286.0Q71.0 267.0 50.3 262.0M89 289.0Q107.9 273.0 126.7 267.0M88 300.0Q74.1 281.0 57.2 276.0M89 303.0Q104.4 287.0 119.8 281.0" fill="none" stroke="#D4E3B9" stroke-opacity=".24" stroke-width=".6"/><path d="M88 368C86 288 80 122 94 9" fill="none" stroke="#C6D8A1" stroke-opacity=".7" stroke-width="1.6"/><path d="M87 344C85 270 82 141 92 38" fill="none" stroke="#143A2B" stroke-opacity=".35" stroke-width="2.8"/></symbol>
+<symbol id="monstera" viewBox="0 0 300 370"><path d="M148 326C114 322 54 305 30 270c-14-19-18-40-11-62 8 15 25 27 44 33-27-24-43-45-36-69 5-15 13-27 24-37l38 50-26-66c12-18 25-33 40-42l20 65-8-76c14-18 28-27 43-24 14-27 39-32 59-20l-31 75 47-63c15 10 26 24 30 42l-61 53 67-32c9 22 11 42 4 64l-74 29 68-7c-4 27-14 45-29 61l-51 4 36 10c-20 29-49 51-75 65ZM135 108c-13-4-18 6-15 20 2 11 9 17 13 9 4-8 7-22 2-29ZM170 151c4-16 14-26 18-17 4 10-2 25-10 30-8 4-10-5-8-13ZM102 196c-8-12-18-18-21-8-3 11 8 29 16 30 8 1 10-9 5-22ZM169 224c5-14 20-24 24-13 2 8-10 24-18 26-7 2-9-5-6-13Z" fill="url(#leaf-satin)" fill-rule="evenodd" stroke="#9CB67F" stroke-opacity=".4" stroke-width=".7"/><path d="M148 326C114 322 54 305 30 270c-14-19-18-40-11-62 8 15 25 27 44 33-27-24-43-45-36-69 5-15 13-27 24-37l38 50-26-66c12-18 25-33 40-42l20 65-8-76c14-18 28-27 43-24 14-27 39-32 59-20l-31 75 47-63c15 10 26 24 30 42l-61 53 67-32c9 22 11 42 4 64l-74 29 68-7c-4 27-14 45-29 61l-51 4 36 10c-20 29-49 51-75 65ZM135 108c-13-4-18 6-15 20 2 11 9 17 13 9 4-8 7-22 2-29ZM170 151c4-16 14-26 18-17 4 10-2 25-10 30-8 4-10-5-8-13ZM102 196c-8-12-18-18-21-8-3 11 8 29 16 30 8 1 10-9 5-22ZM169 224c5-14 20-24 24-13 2 8-10 24-18 26-7 2-9-5-6-13Z" fill="url(#leaf-wax)" fill-rule="evenodd"/><path d="M149 365C144 285 150 154 158 52M150 288Q101 267 56 240M150 254Q102 228 68 191M152 218Q112 180 91 130M154 168Q135 129 130 83M151 284Q197 257 222 230M152 246Q210 216 249 182M153 205Q199 171 243 136M155 155Q188 115 209 70" fill="none" stroke="#C1D3A3" stroke-opacity=".48" stroke-width="1.15" stroke-linecap="round"/><path d="M147 326C145 259 149 140 158 57" fill="none" stroke="#DCE7BA" stroke-opacity=".38" stroke-width="2.2"/><path d="M145 326C143 257 147 143 156 57" fill="none" stroke="#123F2B" stroke-opacity=".35" stroke-width="1.1"/></symbol>
+<symbol id="palm" viewBox="0 0 360 500"><g fill="url(#leaf-satin)"><path d="M182.6 56.7C166.9 22.7 154.8 -10.9 137.8 2.1C149.8 15.1 166.9 57.7 182.6 60.7Z"/><path d="M182.6 56.7C198.2 22.7 210.3 -10.9 227.3 2.1C215.3 15.1 198.2 57.7 182.6 60.7Z"/><path d="M185.3 72.1C163.8 38.1 140.8 5.7 123.8 18.7C135.8 31.7 163.8 73.1 185.3 76.1Z"/><path d="M185.3 72.1C206.8 38.1 229.7 5.7 246.7 18.7C234.7 31.7 206.8 73.1 185.3 76.1Z"/><path d="M187.8 87.4C161.1 53.4 128.4 22.3 111.4 35.3C123.4 48.3 161.1 88.4 187.8 91.4Z"/><path d="M187.8 87.4C214.6 53.4 247.2 22.3 264.2 35.3C252.2 48.3 214.6 88.4 187.8 91.4Z"/><path d="M190.3 102.8C158.8 68.8 117.4 38.9 100.4 51.9C112.4 64.9 158.8 103.8 190.3 106.8Z"/><path d="M190.3 102.8C221.8 68.8 263.2 38.9 280.2 51.9C268.2 64.9 221.8 103.8 190.3 106.8Z"/><path d="M192.6 118.1C156.9 84.1 107.5 55.4 90.5 68.4C102.5 81.4 156.9 119.1 192.6 122.1Z"/><path d="M192.6 118.1C228.3 84.1 277.7 55.4 294.7 68.4C282.7 81.4 228.3 119.1 192.6 122.1Z"/><path d="M194.7 133.5C155.2 99.5 98.8 72.0 81.8 85.0C93.8 98.0 155.2 134.5 194.7 137.5Z"/><path d="M194.7 133.5C234.2 99.5 290.6 72.0 307.6 85.0C295.6 98.0 234.2 134.5 194.7 137.5Z"/><path d="M196.5 148.9C153.7 114.9 91.2 88.6 74.2 101.6C86.2 114.6 153.7 149.9 196.5 152.9Z"/><path d="M196.5 148.9C239.4 114.9 301.9 88.6 318.9 101.6C306.9 114.6 239.4 149.9 196.5 152.9Z"/><path d="M198.2 164.2C152.5 130.2 84.7 105.1 67.7 118.1C79.7 131.1 152.5 165.2 198.2 168.2Z"/><path d="M198.2 164.2C243.8 130.2 311.6 105.1 328.6 118.1C316.6 131.1 243.8 165.2 198.2 168.2Z"/><path d="M199.5 179.6C151.5 145.6 79.5 121.7 62.5 134.7C74.5 147.7 151.5 180.6 199.5 183.6Z"/><path d="M199.5 179.6C247.5 145.6 319.6 121.7 336.6 134.7C324.6 147.7 247.5 180.6 199.5 183.6Z"/><path d="M200.6 194.9C150.8 160.9 75.3 138.3 58.3 151.3C70.3 164.3 150.8 195.9 200.6 198.9Z"/><path d="M200.6 194.9C250.4 160.9 325.9 138.3 342.9 151.3C330.9 164.3 250.4 195.9 200.6 198.9Z"/><path d="M201.4 210.3C150.3 176.3 72.4 154.9 55.4 167.9C67.4 180.9 150.3 211.3 201.4 214.3Z"/><path d="M201.4 210.3C252.5 176.3 330.4 154.9 347.4 167.9C335.4 180.9 252.5 211.3 201.4 214.3Z"/><path d="M201.8 225.6C150.0 191.6 70.6 171.4 53.6 184.4C65.6 197.4 150.0 226.6 201.8 229.6Z"/><path d="M201.8 225.6C253.7 191.6 333.1 171.4 350.1 184.4C338.1 197.4 253.7 226.6 201.8 229.6Z"/><path d="M202.0 241.0C149.8 207.0 70.0 188.0 53.0 201.0C65.0 214.0 149.8 242.0 202.0 245.0Z"/><path d="M202.0 241.0C254.2 207.0 334.0 188.0 351.0 201.0C339.0 214.0 254.2 242.0 202.0 245.0Z"/><path d="M201.8 256.4C150.0 222.4 70.6 204.6 53.6 217.6C65.6 230.6 150.0 257.4 201.8 260.4Z"/><path d="M201.8 256.4C253.7 222.4 333.1 204.6 350.1 217.6C338.1 230.6 253.7 257.4 201.8 260.4Z"/><path d="M201.4 271.7C150.3 237.7 72.4 221.1 55.4 234.1C67.4 247.1 150.3 272.7 201.4 275.7Z"/><path d="M201.4 271.7C252.5 237.7 330.4 221.1 347.4 234.1C335.4 247.1 252.5 272.7 201.4 275.7Z"/><path d="M200.6 287.1C150.8 253.1 75.3 237.7 58.3 250.7C70.3 263.7 150.8 288.1 200.6 291.1Z"/><path d="M200.6 287.1C250.4 253.1 325.9 237.7 342.9 250.7C330.9 263.7 250.4 288.1 200.6 291.1Z"/><path d="M199.5 302.4C151.5 268.4 79.5 254.3 62.5 267.3C74.5 280.3 151.5 303.4 199.5 306.4Z"/><path d="M199.5 302.4C247.5 268.4 319.6 254.3 336.6 267.3C324.6 280.3 247.5 303.4 199.5 306.4Z"/><path d="M198.2 317.8C152.5 283.8 84.7 270.9 67.7 283.9C79.7 296.9 152.5 318.8 198.2 321.8Z"/><path d="M198.2 317.8C243.8 283.8 311.6 270.9 328.6 283.9C316.6 296.9 243.8 318.8 198.2 321.8Z"/><path d="M196.5 333.1C153.7 299.1 91.2 287.4 74.2 300.4C86.2 313.4 153.7 334.1 196.5 337.1Z"/><path d="M196.5 333.1C239.4 299.1 301.9 287.4 318.9 300.4C306.9 313.4 239.4 334.1 196.5 337.1Z"/><path d="M194.7 348.5C155.2 314.5 98.8 304.0 81.8 317.0C93.8 330.0 155.2 349.5 194.7 352.5Z"/><path d="M194.7 348.5C234.2 314.5 290.6 304.0 307.6 317.0C295.6 330.0 234.2 349.5 194.7 352.5Z"/><path d="M192.6 363.9C156.9 329.9 107.5 320.6 90.5 333.6C102.5 346.6 156.9 364.9 192.6 367.9Z"/><path d="M192.6 363.9C228.3 329.9 277.7 320.6 294.7 333.6C282.7 346.6 228.3 364.9 192.6 367.9Z"/><path d="M190.3 379.2C158.8 345.2 117.4 337.1 100.4 350.1C112.4 363.1 158.8 380.2 190.3 383.2Z"/><path d="M190.3 379.2C221.8 345.2 263.2 337.1 280.2 350.1C268.2 363.1 221.8 380.2 190.3 383.2Z"/><path d="M187.8 394.6C161.1 360.6 128.4 353.7 111.4 366.7C123.4 379.7 161.1 395.6 187.8 398.6Z"/><path d="M187.8 394.6C214.6 360.6 247.2 353.7 264.2 366.7C252.2 379.7 214.6 395.6 187.8 398.6Z"/><path d="M185.3 409.9C163.8 375.9 140.8 370.3 123.8 383.3C135.8 396.3 163.8 410.9 185.3 413.9Z"/><path d="M185.3 409.9C206.8 375.9 229.7 370.3 246.7 383.3C234.7 396.3 206.8 410.9 185.3 413.9Z"/></g><path d="M182.6 57.7Q160.2 32.7 137.8 2.1M182.6 57.7Q205.0 32.7 227.3 2.1M185.3 73.1Q154.5 48.1 123.8 18.7M185.3 73.1Q216.0 48.1 246.7 18.7M187.8 88.4Q149.6 63.4 111.4 35.3M187.8 88.4Q226.0 63.4 264.2 35.3M190.3 103.8Q145.3 78.8 100.4 51.9M190.3 103.8Q235.3 78.8 280.2 51.9M192.6 119.1Q141.5 94.1 90.5 68.4M192.6 119.1Q243.6 94.1 294.7 68.4M194.7 134.5Q138.2 109.5 81.8 85.0M194.7 134.5Q251.1 109.5 307.6 85.0M196.5 149.9Q135.4 124.9 74.2 101.6M196.5 149.9Q257.7 124.9 318.9 101.6M198.2 165.2Q133.0 140.2 67.7 118.1M198.2 165.2Q263.4 140.2 328.6 118.1M199.5 180.6Q131.0 155.6 62.5 134.7M199.5 180.6Q268.1 155.6 336.6 134.7M200.6 195.9Q129.5 170.9 58.3 151.3M200.6 195.9Q271.7 170.9 342.9 151.3M201.4 211.3Q128.4 186.3 55.4 167.9M201.4 211.3Q274.4 186.3 347.4 167.9M201.8 226.6Q127.7 201.6 53.6 184.4M201.8 226.6Q276.0 201.6 350.1 184.4M202.0 242.0Q127.5 217.0 53.0 201.0M202.0 242.0Q276.5 217.0 351.0 201.0M201.8 257.4Q127.7 232.4 53.6 217.6M201.8 257.4Q276.0 232.4 350.1 217.6M201.4 272.7Q128.4 247.7 55.4 234.1M201.4 272.7Q274.4 247.7 347.4 234.1M200.6 288.1Q129.5 263.1 58.3 250.7M200.6 288.1Q271.7 263.1 342.9 250.7M199.5 303.4Q131.0 278.4 62.5 267.3M199.5 303.4Q268.1 278.4 336.6 267.3M198.2 318.8Q133.0 293.8 67.7 283.9M198.2 318.8Q263.4 293.8 328.6 283.9M196.5 334.1Q135.4 309.1 74.2 300.4M196.5 334.1Q257.7 309.1 318.9 300.4M194.7 349.5Q138.2 324.5 81.8 317.0M194.7 349.5Q251.1 324.5 307.6 317.0M192.6 364.9Q141.5 339.9 90.5 333.6M192.6 364.9Q243.6 339.9 294.7 333.6M190.3 380.2Q145.3 355.2 100.4 350.1M190.3 380.2Q235.3 355.2 280.2 350.1M187.8 395.6Q149.6 370.6 111.4 366.7M187.8 395.6Q226.0 370.6 264.2 366.7M185.3 410.9Q154.5 385.9 123.8 383.3M185.3 410.9Q216.0 385.9 246.7 383.3" fill="none" stroke="#C7DBA6" stroke-width=".45" stroke-opacity=".37"/><path d="M176 496Q226 286 177 25" fill="none" stroke="#69895A" stroke-width="2.2"/><path d="M178 496Q228 286 179 25" fill="none" stroke="#E2E8B5" stroke-opacity=".5" stroke-width=".8"/></symbol>
+<symbol id="fern" viewBox="0 0 160 320"><path d="M79 317C77 210 84 123 96 15" fill="none" stroke="#30633E" stroke-width="2"/><g fill="url(#leaf-green)"><path d="M93 47Q65 16 77 1q25 23 16 46m-3 29Q50 49 57 24q36 22 33 52m-4 33Q37 81 40 54q44 25 46 55m-2 38Q23 117 23 83q53 32 61 64m-4 42Q8 155 10 116q58 29 70 73m-1 45Q1 194 2 156q68 36 77 78m0 47Q3 249 4 208q62 22 75 73M93 47q31-23 23-44-25 18-23 44m-3 29q47-19 44-48-39 18-44 48m-4 33q61-24 58-53-47 17-58 53m-2 38q70-24 69-60-59 20-69 60m-4 42q77-24 78-64-62 21-78 64m-1 45q80-28 80-66-66 23-80 66m0 47q78-27 75-66-62 18-75 66"/></g></symbol>
+</defs></svg>
+<div class="nature" aria-hidden="true"><div class="sky"></div><div class="rays"></div><div class="studio-light studio-light-warm"></div><div class="studio-light studio-light-cool"></div>
+<div class="layer far" data-depth="5"><svg viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice"><g class="sway"><use href="#palm" x="-140" y="-150" width="720" height="870" transform="rotate(35 100 300)"/></g><g class="sway second"><use href="#banana" x="1100" y="0" width="330" height="760" transform="rotate(-28 1200 450)"/></g></svg></div>
+<div class="layer mid" data-depth="11"><svg viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice"><g class="sway second"><use href="#fern" x="-125" y="450" width="420" height="700" transform="rotate(27 90 850)"/></g><g class="sway third"><use href="#palm" x="1100" y="100" width="500" height="680" transform="rotate(-36 1360 500)"/></g></svg></div>
+<div class="layer near" data-depth="18"><svg viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice"><g class="sway"><use href="#monstera" x="-145" y="760" width="360" height="410" transform="rotate(32 60 930)"/></g><g class="sway second"><use href="#banana" x="1310" y="610" width="240" height="510" transform="rotate(-25 1400 930)"/></g></svg></div><div class="studio-haze"></div><div class="studio-glass"></div><div class="studio-rim studio-rim-left"></div><div class="studio-rim studio-rim-right"></div><div class="pollen" id="pollen"></div></div>
+<div class="shell">
+<header class="header"><div class="brand"><svg aria-hidden="true" viewBox="0 0 34 38"><path d="M17 34V17C7 18 3 12 3 5c10-1 16 4 14 12C17 8 23 3 31 3c1 10-5 17-14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>выдох</div><div class="header-actions"><span class="header-note">Пространство внимания к себе</span><button class="motion" id="motion" aria-label="Уменьшить движение" aria-pressed="false" title="Уменьшить движение"><svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4v12M14 4v12"/></svg></button></div></header>
+<main class="stage" id="stage"></main>
+<footer class="footer"><span>Небольшая пауза.<br>Чуть больше внимания к себе.</span><span>18+ · До приёма врача<br>Ответы остаются в этой вкладке</span></footer>
+</div>
+<div class="sr-only" id="announcer" role="status" aria-live="polite" aria-atomic="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<noscript><p style="padding:30px">Для опросников нужен JavaScript. Включите его в настройках браузера.</p></noscript>
+<div id="selection-effects" aria-hidden="true" inert></div>
+<nav id="phone-dock" class="phone-dock" aria-label="Переход между вопросами" hidden>
+ <div class="phone-dock-inner">
+  <button type="button" class="button secondary phone-back" data-action="back">Назад</button>
+  <button type="button" class="button primary next phone-next" data-action="next"><span id="phone-next-label">Далее</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+ </div>
+</nav>
+<script>
+(() => {
+'use strict';
+// ==================== ДАННЫЕ ====================
+const DOCTOR_EMAIL = 'doctor@example.com';
+/* Данные сверены с русской страницей https://potanindoc.ru/o.
+   Из источника взяты только инструкции, вопросы и варианты ответов.
+   Серверные адреса, исследовательское согласие, токены и имя не переносятся.
+   verifiedText означает совпадение с указанным источником, а не отдельную валидацию перевода.
+   Номера reverseItems и подшкал начинаются с 1. Баллы options[].points
+   заданы до инверсии reverseItems; HADS использует индивидуальные ключи.
+   AQ-10: официальный ключ ARC AQ10.pdf; BIS-brief: Steinberg et al., 2013.
+   HCL-8: взвешенная русская версия, Мосолов и соавт., 2015, приложение 2.
+   ASRS-5: простая сумма 0–24, разрешённая авторами без клинического порога.
+*/
+// ПРОВЕРИТЬ ASRS5-WEIGHTED-KEY: для пороговой оценки нужен предоставленный авторами взвешенный ключ. Здесь используется только простая сумма без порога.
+const QUESTIONNAIRES = {
+  "hads": {
+    "id": "hads",
+    "name": "HADS",
+    "title": "Как вы чувствуете себя сейчас",
+    "description": "Тревога и настроение за последнюю неделю.",
+    "instruction": "Эмоции играют важную роль при большинстве заболеваний. Эта анкета поможет врачу лучше понять ваше самочувствие. Прочитайте каждый пункт и отметьте ответ, наиболее соответствующий тому, как вы себя чувствовали на прошлой неделе. Не задумывайтесь слишком долго над ответами: ваша первая реакция на каждый пункт, вероятно, будет более точной, чем тщательно продуманный ответ.",
+    "verifiedText": true,
+    "verifiedKey": true,
+    "source": "https://potanindoc.ru/o",
+    "reverseItems": [],
+    "subscales": [
+      {
+        "id": "anxiety",
+        "name": "Тревога",
+        "items": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13
+        ]
+      },
+      {
+        "id": "depression",
+        "name": "Депрессивные симптомы",
+        "items": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14
+        ]
+      }
+    ],
+    "min": 0,
+    "max": 21,
+    "thresholds": [
+      {
+        "min": 0,
+        "max": 7,
+        "label": "Ниже порога"
+      },
+      {
+        "min": 8,
+        "max": 10,
+        "label": "Повышенный риск, стоит обсудить с врачом"
+      },
+      {
+        "min": 11,
+        "max": 21,
+        "label": "Повышенный риск, стоит обсудить с врачом"
+      }
+    ],
+    "interpretations": {
+      "low": "Ниже порога",
+      "high": "Повышенный риск, стоит обсудить с врачом"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "text": "Я чувствую себя напряжённо или «на взводе»",
+        "options": [
+          {
+            "label": "Все время",
+            "points": 3
+          },
+          {
+            "label": "Часто",
+            "points": 2
+          },
+          {
+            "label": "Время от времени",
+            "points": 1
+          },
+          {
+            "label": "Совсем не испытываю",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Мне по-прежнему приносит удовольствие то, что приносило его раньше",
+        "options": [
+          {
+            "label": "Определенно, это так",
+            "points": 0
+          },
+          {
+            "label": "В меньшей степени, чем раньше",
+            "points": 1
+          },
+          {
+            "label": "Совсем немного",
+            "points": 2
+          },
+          {
+            "label": "Практически не приносит удовольствия",
+            "points": 3
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "У меня возникает чувство, как будто я напуган(а), как будто что-то ужасное сейчас произойдет",
+        "options": [
+          {
+            "label": "Определенно, это так, и страх очень сильный",
+            "points": 3
+          },
+          {
+            "label": "Да, это так, но страх не очень сильный",
+            "points": 2
+          },
+          {
+            "label": "Немного, но это меня не беспокоит",
+            "points": 1
+          },
+          {
+            "label": "Совсем не испытываю",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "Я могу смеяться и видеть смешную сторону вещей",
+        "options": [
+          {
+            "label": "В той же степени, как это обычно для меня",
+            "points": 0
+          },
+          {
+            "label": "Несколько в меньшей степени, чем обычно",
+            "points": 1
+          },
+          {
+            "label": "В значительно меньшей степени, чем обычно",
+            "points": 2
+          },
+          {
+            "label": "Совершенно не способен(на)",
+            "points": 3
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Тревожные мысли приходят мне на ум",
+        "options": [
+          {
+            "label": "Большую часть времени",
+            "points": 3
+          },
+          {
+            "label": "Значительную часть времени",
+            "points": 2
+          },
+          {
+            "label": "Время от времени, но не слишком часто",
+            "points": 1
+          },
+          {
+            "label": "Только иногда",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "text": "Я жизнерадостный(ная)",
+        "options": [
+          {
+            "label": "Совершенно нет",
+            "points": 3
+          },
+          {
+            "label": "Редко",
+            "points": 2
+          },
+          {
+            "label": "Периодически",
+            "points": 1
+          },
+          {
+            "label": "Большую часть времени",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "text": "Я легко могу сесть и расслабиться",
+        "options": [
+          {
+            "label": "Определенно, это так",
+            "points": 0
+          },
+          {
+            "label": "Обычно это так",
+            "points": 1
+          },
+          {
+            "label": "Изредка",
+            "points": 2
+          },
+          {
+            "label": "Совсем не могу",
+            "points": 3
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "text": "Я чувствую себя как будто замедленным(ой)",
+        "options": [
+          {
+            "label": "Практически все время",
+            "points": 3
+          },
+          {
+            "label": "Часто",
+            "points": 2
+          },
+          {
+            "label": "Иногда",
+            "points": 1
+          },
+          {
+            "label": "Совсем нет",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "text": "Я чувствую, как будто напуган(а) так, что все внутри холодеет",
+        "options": [
+          {
+            "label": "Совсем не испытываю",
+            "points": 0
+          },
+          {
+            "label": "Иногда",
+            "points": 1
+          },
+          {
+            "label": "Часто",
+            "points": 2
+          },
+          {
+            "label": "Очень часто",
+            "points": 3
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "text": "Я не слежу за своей внешностью",
+        "options": [
+          {
+            "label": "Определенно это так",
+            "points": 3
+          },
+          {
+            "label": "Я не уделяю этому столько времени, сколько нужно",
+            "points": 2
+          },
+          {
+            "label": "Возможно, я стал(а) меньше уделять этому внимания",
+            "points": 1
+          },
+          {
+            "label": "Я слежу за собой так же, как и раньше",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "text": "Я испытываю беспокойство, как будто мне все время нужно двигаться",
+        "options": [
+          {
+            "label": "В весьма выраженной степени",
+            "points": 3
+          },
+          {
+            "label": "В значительной степени",
+            "points": 2
+          },
+          {
+            "label": "В незначительной степени",
+            "points": 1
+          },
+          {
+            "label": "Совсем не испытываю",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "text": "Я с удовольствием предвкушаю события",
+        "options": [
+          {
+            "label": "Так же, как обычно",
+            "points": 0
+          },
+          {
+            "label": "В меньшей степени, чем раньше",
+            "points": 1
+          },
+          {
+            "label": "Значительно меньше, чем обычно",
+            "points": 2
+          },
+          {
+            "label": "Практически нет",
+            "points": 3
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "text": "Меня охватывает внезапная паника",
+        "options": [
+          {
+            "label": "Очень часто",
+            "points": 3
+          },
+          {
+            "label": "Довольно часто",
+            "points": 2
+          },
+          {
+            "label": "Не так уж часто",
+            "points": 1
+          },
+          {
+            "label": "Совсем не возникает",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "text": "Я могу получить удовольствие от хорошей книги, радио- или телепрограммы",
+        "options": [
+          {
+            "label": "Часто",
+            "points": 0
+          },
+          {
+            "label": "Иногда",
+            "points": 1
+          },
+          {
+            "label": "Редко",
+            "points": 2
+          },
+          {
+            "label": "Очень редко",
+            "points": 3
+          }
+        ]
+      }
+    ],
+    "bands": [
+      "0–7: ниже порога",
+      "8–10: субклиническая выраженность по шкале",
+      "11–21: клиническая выраженность по шкале"
+    ]
+  },
+  "aq10": {
+    "id": "aq10",
+    "name": "AQ-10",
+    "title": "Как вы воспринимаете мир",
+    "description": "Особенности общения, внимания и восприятия.",
+    "instruction": "Пожалуйста, прочитайте каждое утверждение и отметьте, насколько вы с ним согласны.",
+    "verifiedText": true,
+    "verifiedKey": true,
+    "source": "https://potanindoc.ru/o",
+    "reverseItems": [],
+    "subscales": [],
+    "min": 0,
+    "max": 10,
+    "thresholds": [
+      {
+        "min": 0,
+        "max": 5.99,
+        "label": "Ниже порога"
+      },
+      {
+        "min": 6,
+        "max": 10,
+        "label": "Повышенный риск, стоит обсудить с врачом"
+      }
+    ],
+    "interpretations": {
+      "low": "Ниже порога",
+      "high": "Повышенный риск, стоит обсудить с врачом"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "text": "Я часто замечаю еле уловимые звуки, которые не замечают другие люди.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Обычно я больше концентрируюсь на картине в целом, чем на мелких деталях.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Мне легко заниматься несколькими делами сразу.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "Если меня отвлекли, я очень быстро могу вернуться к прежнему занятию.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Мне легко «читать между строк», когда со мной кто-то разговаривает.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "text": "Я знаю, как определить, что слушающему меня человеку становится скучно.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "text": "Когда я читаю повесть, мне сложно понять намерения персонажей.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "text": "Мне нравится собирать информацию о категориях вещей (к примеру, типах машин, видах птиц, типах поездов, видах растений и т. д.).",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "text": "Мне легко понять, что думает или чувствует другой человек, просто взглянув на его лицо.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "text": "Мне сложно понять намерения других людей.",
+        "options": [
+          {
+            "label": "Полностью согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Скорее согласен(на)",
+            "points": 1
+          },
+          {
+            "label": "Скорее не согласен(на)",
+            "points": 0
+          },
+          {
+            "label": "Полностью не согласен(на)",
+            "points": 0
+          }
+        ]
+      }
+    ]
+  },
+  "asrs5": {
+    "id": "asrs5",
+    "name": "ASRS-5",
+    "title": "Внимание в повседневной жизни",
+    "description": "Трудности внимания, самоорганизации и контроля активности.",
+    "instruction": "Пожалуйста, ответьте на вопросы ниже. Для каждого вопроса выберите вариант, который лучше всего описывает, как вы чувствовали и вели себя в течение последних 6 месяцев.",
+    "verifiedText": true,
+    "verifiedKey": true,
+    "source": "https://potanindoc.ru/o",
+    "reverseItems": [],
+    "subscales": [],
+    "min": 0,
+    "max": 24,
+    "thresholds": [],
+    "interpretations": {
+      "sum": "Сумма баллов без пороговой интерпретации. Обсудите ответы с врачом."
+    },
+    "questions": [
+      {
+        "id": 1,
+        "text": "Как часто вам было сложно сконцентрироваться на том, что вам говорят люди, даже когда обращаются непосредственно к вам?",
+        "options": [
+          {
+            "label": "Никогда",
+            "points": 0
+          },
+          {
+            "label": "Редко",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Очень часто",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Как часто вы покидали своё место на совещании или в других ситуациях, в которых вам следовало оставаться на своём месте?",
+        "options": [
+          {
+            "label": "Никогда",
+            "points": 0
+          },
+          {
+            "label": "Редко",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Очень часто",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Как часто вам было трудно расслабиться и отдохнуть, когда у вас было свободное время?",
+        "options": [
+          {
+            "label": "Никогда",
+            "points": 0
+          },
+          {
+            "label": "Редко",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Очень часто",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "Как часто во время разговора вы ловили себя на том, что заканчиваете за собеседниками фразы до того, как они смогут договорить сами?",
+        "options": [
+          {
+            "label": "Никогда",
+            "points": 0
+          },
+          {
+            "label": "Редко",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Очень часто",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Как часто вы откладывали дела до последнего момента?",
+        "options": [
+          {
+            "label": "Никогда",
+            "points": 0
+          },
+          {
+            "label": "Редко",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Очень часто",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "text": "Как часто вы зависите от других в том, что касается поддержания порядка в вашей жизни и внимания к деталям?",
+        "options": [
+          {
+            "label": "Никогда",
+            "points": 0
+          },
+          {
+            "label": "Редко",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Очень часто",
+            "points": 4
+          }
+        ]
+      }
+    ],
+    "scoringMode": "sumOnly",
+    "scoringNote": "ASRS-5: используется разрешённая авторами простая сумма 0–24 без клинического порога. Взвешенный алгоритм — другая схема; порог 14 к этой сумме не применяется.",
+    "scoringSource": "https://psych.coach/wp-content/uploads/Resources/Scales/ADHD/asrs-5_english.pdf"
+  },
+  "bis": {
+    "id": "bis",
+    "name": "BIS-brief",
+    "title": "Решения и импульсы",
+    "description": "Как вы обычно действуете и принимаете решения.",
+    "instruction": "Люди различаются по тому, как они думают и действуют в разных ситуациях. Прочитайте каждое утверждение и отметьте, насколько часто оно относится к вам. Не задумывайтесь долго, отвечайте быстро и честно.",
+    "verifiedText": true,
+    "verifiedKey": true,
+    "source": "https://potanindoc.ru/o",
+    "reverseItems": [
+      1,
+      4,
+      5,
+      6
+    ],
+    "subscales": [],
+    "min": 8,
+    "max": 32,
+    "thresholds": [],
+    "interpretations": {
+      "sum": "Сумма баллов. Единого диагностического порога нет."
+    },
+    "questions": [
+      {
+        "id": 1,
+        "text": "Я тщательно планирую задачи.",
+        "options": [
+          {
+            "label": "Редко или никогда",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Всегда или почти всегда",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Я действую без обдумывания.",
+        "options": [
+          {
+            "label": "Редко или никогда",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Всегда или почти всегда",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Я невнимательный(-ая).",
+        "options": [
+          {
+            "label": "Редко или никогда",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Всегда или почти всегда",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "Я контролирую себя.",
+        "options": [
+          {
+            "label": "Редко или никогда",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Всегда или почти всегда",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Я легко сосредоточиваюсь.",
+        "options": [
+          {
+            "label": "Редко или никогда",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Всегда или почти всегда",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "text": "Я аккуратен(-на), осторожен(-на) в мыслях.",
+        "options": [
+          {
+            "label": "Редко или никогда",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Всегда или почти всегда",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "text": "Я говорю, не подумав.",
+        "options": [
+          {
+            "label": "Редко или никогда",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Всегда или почти всегда",
+            "points": 4
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "text": "Я действую под влиянием момента.",
+        "options": [
+          {
+            "label": "Редко или никогда",
+            "points": 1
+          },
+          {
+            "label": "Иногда",
+            "points": 2
+          },
+          {
+            "label": "Часто",
+            "points": 3
+          },
+          {
+            "label": "Всегда или почти всегда",
+            "points": 4
+          }
+        ]
+      }
+    ],
+    "reverseBounds": [
+      1,
+      4
+    ],
+    "scoringMode": "sumOnly",
+    "scoringSource": "https://www.uh.edu/class/psychology/clinical-psych/research/dpl/_files/publications/steinberg-sharp-stanford-tharp-2013.pdf"
+  },
+  "hcl8": {
+    "id": "hcl8",
+    "name": "HCL-8",
+    "title": "Периоды повышенной энергии",
+    "description": "Периоды необычно повышенного настроения и активности в прошлом.",
+    "instruction": "Попробуйте припомнить период «повышенного» состояния — когда вы чувствовали себя необычно энергичным(ой), активным(ой) или приподнятым(ой). Как вы себя тогда чувствовали? Отвечайте на каждое утверждение независимо от вашего нынешнего состояния.",
+    "verifiedText": true,
+    "verifiedKey": true,
+    "source": "https://potanindoc.ru/o",
+    "reverseItems": [],
+    "subscales": [],
+    "min": 0,
+    "max": 22.05,
+    "thresholds": [
+      {
+        "min": 0,
+        "max": 9.290000000000001,
+        "label": "Ниже порога"
+      },
+      {
+        "min": 9.3,
+        "max": 22.05,
+        "label": "Повышенный риск, стоит обсудить с врачом"
+      }
+    ],
+    "interpretations": {
+      "low": "Ниже порога",
+      "high": "Повышенный риск, стоит обсудить с врачом"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "text": "Мне требовалось меньше времени на сон.",
+        "options": [
+          {
+            "label": "Да",
+            "points": 4.72
+          },
+          {
+            "label": "Нет",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Я стал (стала) менее застенчивым (застенчивой) и «закомплексованным» («закомплексованной»).",
+        "options": [
+          {
+            "label": "Да",
+            "points": 2.49
+          },
+          {
+            "label": "Нет",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Я много говорил(а).",
+        "options": [
+          {
+            "label": "Да",
+            "points": 1.95
+          },
+          {
+            "label": "Нет",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "Я много шутил(а) и каламбурил(а).",
+        "options": [
+          {
+            "label": "Да",
+            "points": 2.37
+          },
+          {
+            "label": "Нет",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Я легко отвлекался (отвлекалась).",
+        "options": [
+          {
+            "label": "Да",
+            "points": 2.61
+          },
+          {
+            "label": "Нет",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "text": "У меня мысли перескакивали с одного на другое.",
+        "options": [
+          {
+            "label": "Да",
+            "points": 3.49
+          },
+          {
+            "label": "Нет",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "text": "Я раздражал(а) и утомлял(а) окружающих.",
+        "options": [
+          {
+            "label": "Да",
+            "points": 2.06
+          },
+          {
+            "label": "Нет",
+            "points": 0
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "text": "Настроение у меня было приподнятым и оптимистичным.",
+        "options": [
+          {
+            "label": "Да",
+            "points": 2.36
+          },
+          {
+            "label": "Нет",
+            "points": 0
+          }
+        ]
+      }
+    ],
+    "decimals": 2,
+    "scoringNote": "HCL-8: взвешенная русская версия, приложение 2; сумма коэффициентов ответов «Да», максимум 22,05; порог ≥9,3. Не является простой суммой 0–8.",
+    "scoringSource": "https://psychiatr.ru/files/magazines/2015_03_scp_833.pdf"
+  }
+};
+// ==================== ПОДСЧЁТ: чистые функции, без DOM ====================
+function readiness(q){
+  if(!q.verifiedText || q.questions.some(item=>/\[ВСТАВИТЬ/.test(item.text)||item.options.some(o=>/\[ВСТАВИТЬ/.test(o.label)))) return 'Официальный бланк ещё не добавлен';
+  if(!q.verifiedKey || !Array.isArray(q.reverseItems) || q.questions.some(item=>item.options.some(o=>!Number.isFinite(o.points)))) return 'Ключ требует проверки';
+  if(!Number.isFinite(q.min)||!Number.isFinite(q.max)) return 'Диапазон требует проверки';
+  if(q.scoringMode!=='sumOnly' && (!Array.isArray(q.thresholds)||!q.thresholds.length)) return 'Порог требует проверки';
+  return '';
+}
+function valuesFor(q,answers){
+  if(!Array.isArray(answers)||answers.length!==q.questions.length) return null;
+  const values=q.questions.map((item,i)=>{
+    const answer=answers[i];
+    if(!Number.isInteger(answer)||answer<0||answer>=item.options.length) return NaN;
+    const value=item.options[answer].points;
+    if(!Number.isFinite(value)) return NaN;
+    return q.reverseItems.includes(i+1)?q.reverseBounds[0]+q.reverseBounds[1]-value:value;
+  });
+  return values.every(Number.isFinite)?values:null;
+}
+function metric(q,title,total,min,max){
+  total=Math.round((total+Number.EPSILON)*100)/100;
+  const band=q.thresholds?.find(b=>total>=b.min&&total<=b.max),sumOnly=q.scoringMode==='sumOnly';
+  if(total<min||total>max||(!band&&!sumOnly)) return {scale:q.name,title,total:null,min,max,available:false,message:'Проверьте диапазон и пороги'};
+  return {scale:q.name,title,total,min,max,available:true,decimals:q.decimals||0,high:!sumOnly&&total>q.thresholds[0].max,message:sumOnly?q.interpretations.sum:band.label};
+}
+function compute(q,answers){
+  const reason=readiness(q), values=reason?null:valuesFor(q,answers);
+  const unavailable=title=>({scale:q.name,title,total:null,min:q.min,max:q.max,available:false,message:reason||'Ответы заполнены не полностью'});
+  if(q.subscales.length) return q.subscales.map(s=>values?metric(q,s.name,s.items.reduce((sum,n)=>sum+values[n-1],0),q.min,q.max):unavailable(s.name));
+  return [values?metric(q,q.description,values.reduce((a,b)=>a+b,0),q.min,q.max):unavailable(q.description)];
+}
+function scoreHADS(answers,q=QUESTIONNAIRES.hads){return compute(q,answers)}
+function scoreAQ10(answers,q=QUESTIONNAIRES.aq10){return compute(q,answers)[0]}
+function scoreASRS5(answers,q=QUESTIONNAIRES.asrs5){return compute(q,answers)[0]}
+function scoreBISBrief(answers,q=QUESTIONNAIRES.bis){return compute(q,answers)[0]}
+function scoreHCL8(answers,q=QUESTIONNAIRES.hcl8){return compute(q,answers)[0]}
+// Семейства эффектов: несколько спокойных вариантов в каждом опроснике.
+function selectionPlan(scaleId,itemIndex,sequence){
+  const modes={hads:'fall',aq10:'wind',asrs5:'orbit',bis:'water',hcl8:'bloom'};
+  return {mode:modes[scaleId]||'fall',variant:(itemIndex+sequence)%3,count:5,duration:1120};
+}
+function selectionKeyframes(mode,index,variant){
+  const angle=index/5*Math.PI*2,side=variant===1?-1:1;
+  let middle,end,rotation;
+  if(mode==='fall'){
+    middle=[Math.sin(index*1.7+variant)*23,38+index*5];end=[Math.sin(index*2.2+variant)*35,85+index*10];rotation=90+index*38;
+  }else if(mode==='wind'){
+    middle=[side*(38+index*9),-18+Math.sin(index+variant)*18];end=[side*(95+index*12),-50+index*17];rotation=side*(110+index*24);
+  }else if(mode==='orbit'){
+    middle=[Math.cos(angle+variant)*31,Math.sin(angle+variant)*20-10];end=[Math.cos(angle+variant+.8)*65,Math.sin(angle+variant+.8)*44-38];rotation=side*(100+index*35);
+  }else if(mode==='bloom'){
+    middle=[Math.cos(angle)*25,Math.sin(angle)*20-9];end=[Math.cos(angle)*52,Math.sin(angle)*40-30];rotation=index*65+variant*30;
+  }else{
+    return [{opacity:0,transform:'translate3d(0,0,0) scale(.35)'},{offset:.2,opacity:.35,transform:'translate3d(0,0,0) scale(.85)'},{opacity:0,transform:`translate3d(0,${index*2}px,0) scale(${2.2+index*.18})`}];
+  }
+  return [
+    {opacity:0,transform:`translate3d(0,0,0) rotate(${-20+index*13}deg) scale(.55)`},
+    {offset:.2,opacity:.6,transform:`translate3d(${middle[0]*.3}px,${middle[1]*.3}px,0) rotate(${rotation*.12}deg) scale(.9)`},
+    {offset:.58,opacity:.42,transform:`translate3d(${middle[0]}px,${middle[1]}px,0) rotate(${rotation*.55}deg) scale(1)`},
+    {opacity:0,transform:`translate3d(${end[0]}px,${end[1]}px,0) rotate(${rotation}deg) scale(.7)`}
+  ];
+}
+
+// Сводка для врача описывает только результаты самоотчёта, без нового диагноза.
+function buildClinicianSummary(rows,profile){
+  const number=value=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(value);
+  const sex={male:'мужской',female:'женский',unspecified:'не указан'}[profile.sex]||'не указан';
+  const lines=[`Скрининговое обследование по данным самоотчёта. Возраст: ${profile.age||'не указан'}; пол: ${sex}.`];
+  const hads=rows.filter(r=>r.scale==='HADS');
+  if(hads.length===2&&hads.every(r=>r.available)){
+    const grade=value=>value<8?'ниже скринингового порога':value<11?'субклиническая выраженность симптомов по шкале':'клиническая выраженность симптомов по шкале';
+    lines.push(`HADS-A: ${number(hads[0].total)}/21, ${grade(hads[0].total)}. HADS-D: ${number(hads[1].total)}/21, ${grade(hads[1].total)}.`);
+  }
+  for(const row of rows){
+    if(row.scale==='HADS')continue;
+    if(!row.available){lines.push(`${row.scale}: результат недоступен; ${row.message}.`);continue}
+    const value=`${number(row.total)}/${number(row.max)}`;
+    if(row.scale==='AQ-10')lines.push(`AQ-10: ${value}; скрининговый порог ${row.high?'достигнут':'не достигнут'}.`);
+    if(row.scale==='ASRS-5')lines.push(`ASRS-5: ${value}, простая сумма ответов. Пороговая интерпретация не проводилась: взвешенный ключ в этой версии не используется.`);
+    if(row.scale==='BIS-brief')lines.push(`BIS-brief: ${value}; сумма баллов, без диагностической категоризации.`);
+    if(row.scale==='HCL-8')lines.push(`HCL-8: ${value}, взвешенная русская версия; порог 9,3 ${row.high?'достигнут':'не достигнут'}.`);
+  }
+  const directions=[];
+  if(hads.some(r=>r.available&&r.high))directions.push('выраженность и длительность тревожных и депрессивных симптомов');
+  if(rows.some(r=>r.scale==='AQ-10'&&r.available&&r.high))directions.push('анамнез развития и особенности социальной коммуникации');
+  if(rows.some(r=>r.scale==='HCL-8'&&r.available&&r.high))directions.push('наличие, продолжительность и последствия периодов подъёма настроения и активности');
+  if(directions.length)lines.push(`При клиническом интервью целесообразно уточнить: ${directions.join('; ')}.`);
+  lines.push('Результаты скрининга не являются диагнозом и не позволяют установить или исключить расстройство без клинической оценки.');
+  return lines.join('\n\n');
+}
+// Демографические данные не меняют ключи и пороги этих взрослых шкал.
+// Возраст проверяет применимость набора 18+; пол включается в отчёт врачу.
+function validateProfile(profile){
+  const errors={};
+  if(!['male','female','unspecified'].includes(profile.sex))errors.sex='Укажите пол или выберите «Не хочу указывать».';
+  const raw=String(profile.age??'').trim(),age=Number(raw);
+  if(!/^\d{1,3}$/.test(raw)||!Number.isInteger(age)||age<1||age>120)errors.age='Введите возраст целым числом от 1 до 120 лет.';
+  else if(age<18)errors.age='Этот набор опросников предназначен для взрослых от 18 лет. Для вашего возраста нужен другой набор.';
+  return errors;
+}
+// ==================== СОСТОЯНИЕ: только память вкладки ====================
+const scales=Object.values(QUESTIONNAIRES), totalQuestions=scales.reduce((n,q)=>n+q.questions.length,0);
+const state={screen:'welcome',scale:0,item:0,profile:{sex:'',age:''},answers:Object.fromEntries(scales.map(q=>[q.id,Array(q.questions.length).fill(null)])),busy:false,completedAt:null};
+const stage=document.getElementById('stage'), announcer=document.getElementById('announcer'), root=document.documentElement;
+const systemMotion=matchMedia('(prefers-reduced-motion: reduce)'), pointerFine=matchMedia('(hover:hover) and (pointer:fine)');
+let calm=false, toastTimer, renderFrame=0, resultObserver;
+const reduce=()=>calm||systemMotion.matches;
+const esc=value=>String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const arrow='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>';
+const lock='<svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="9" width="12" height="9" rx="3"/><path d="M7 9V6a3 3 0 0 1 6 0v3"/></svg>';
+const plant='<svg class="plant-icon" aria-hidden="true" viewBox="0 0 100 115"><path d="M50 110V37" fill="none" stroke="#1F6B4A" stroke-width="2"/><path d="M50 79C22 81 10 60 13 43c24-3 41 12 37 36" fill="#BFE8D0"/><path d="M50 60C48 32 68 17 87 20c3 24-12 43-37 40" fill="#3FA66B"/><path d="M49 40C29 35 23 17 28 4c20 2 30 18 21 36" fill="#D8E86B"/><path d="m50 79-22-23m22 4 23-25M49 40 35 17" fill="none" stroke="#1F6B4A" stroke-width="1.3"/></svg>';
+const formatScore=(value,decimals=2)=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:decimals}).format(value);
+const isDemo=()=>scales.some(q=>readiness(q));
+const sexLabels={male:'Мужской',female:'Женский',unspecified:'Не указан'};
+function adaptWording(text,sex){
+  if(!['male','female'].includes(sex))return text;
+  const index=sex==='female'?1:0;
+  const forms=[
+    ['Я стал (стала) менее застенчивым (застенчивой) и «закомплексованным» («закомплексованной»).','Я стал менее застенчивым и «закомплексованным».','Я стала менее застенчивой и «закомплексованной».'],
+    ['отвлекался (отвлекалась)','отвлекался','отвлекалась'],
+    ['напуган(а)','напуган','напугана'],['способен(на)','способен','способна'],
+    ['жизнерадостный(ная)','жизнерадостный','жизнерадостная'],
+    ['замедленным(ой)','замедленным','замедленной'],['стал(а)','стал','стала'],
+    ['согласен(на)','согласен','согласна'],['невнимательный(-ая)','невнимательный','невнимательная'],
+    ['аккуратен(-на)','аккуратен','аккуратна'],['осторожен(-на)','осторожен','осторожна'],
+    ['говорил(а)','говорил','говорила'],['шутил(а)','шутил','шутила'],['каламбурил(а)','каламбурил','каламбурила'],
+    ['раздражал(а)','раздражал','раздражала'],['утомлял(а)','утомлял','утомляла'],
+    ['энергичным(ой)','энергичным','энергичной'],['активным(ой)','активным','активной'],['приподнятым(ой)','приподнятым','приподнятой']
+  ];
+  return forms.reduce((value,[original,male,female])=>value.split(original).join(index?female:male),text);
+}
+const wording=text=>adaptWording(text,state.profile.sex);
+function profileSummary(){return `Пол: ${sexLabels[state.profile.sex]||'не указан'} · Возраст: ${state.profile.age||'не указан'}`}
+function profileScreen(){return `<section class="screen" aria-labelledby="screen-title"><div class="profile-card glass"><div class="eyebrow">Перед началом</div><h2 id="screen-title" tabindex="-1">Пара слов о вас.</h2><p class="profile-description">Укажите пол и возраст. Они останутся только в этой вкладке и попадут в отчёт для врача.</p><form id="profile-form" novalidate><fieldset class="profile-sex" aria-describedby="sex-error"><legend>Пол</legend><div class="profile-sex-options">${[['male','Мужской'],['female','Женский'],['unspecified','Не хочу указывать']].map(([value,label])=>`<label class="profile-choice"><input type="radio" name="sex" value="${value}" ${state.profile.sex===value?'checked':''} required><span>${label}</span></label>`).join('')}</div></fieldset><p class="field-error" id="sex-error" aria-live="polite"></p><label class="age-label" for="profile-age">Возраст, полных лет</label><input class="age-input" id="profile-age" name="age" type="number" min="1" max="120" step="1" inputmode="numeric" autocomplete="off" enterkeyhint="done" value="${esc(state.profile.age)}" aria-describedby="age-error" required><p class="field-error" id="age-error" aria-live="polite"></p><p class="profile-rule">Возраст проверяет, подходит ли взрослый набор опросников. Пол определяет грамматическую форму вопросов и отражается в отчёте. Баллы и пороги шкал по этим данным автоматически не изменяются.</p><div class="navigation"><button type="button" class="text-button" data-action="profile-back"><span>← Назад</span></button><button type="submit" class="button primary">К опросникам ${arrow}</button></div></form></div></section>`}
+function submitProfile(event){
+  event.preventDefault();if(state.busy)return;
+  const form=event.target;
+  state.profile.sex=form.querySelector('input[name="sex"]:checked')?.value||'';
+  state.profile.age=form.querySelector('[name="age"]').value.trim();
+  const errors=validateProfile(state.profile);
+  document.getElementById('sex-error').textContent=errors.sex||'';
+  document.getElementById('age-error').textContent=errors.age||'';
+  const fieldset=form.querySelector('fieldset'),age=form.querySelector('[name="age"]');
+  fieldset.setAttribute('aria-invalid',String(!!errors.sex));
+  form.querySelectorAll('input[name="sex"]').forEach(input=>input.setAttribute('aria-invalid',String(!!errors.sex)));
+  age.setAttribute('aria-invalid',String(!!errors.age));
+  if(errors.sex){form.querySelector('input[name="sex"]').focus();return}
+  if(errors.age){age.focus();return}
+  state.profile.age=String(Number(state.profile.age));age.blur();
+  navigate(()=>{state.screen='breath';state.scale=0;state.item=0});
+}
+
+function results(){return [...scoreHADS(state.answers.hads),scoreAQ10(state.answers.aq10),scoreASRS5(state.answers.asrs5),scoreBISBrief(state.answers.bis),scoreHCL8(state.answers.hcl8)]}
+function answeredCount(){return Object.values(state.answers).flat().filter(Number.isInteger).length}
+function demoNotice(){return isDemo()?'<div class="notice"><strong>Предпросмотр интерфейса.</strong> Вопросы содержат явные заглушки. До добавления официальных бланков и ключей клинические результаты не рассчитываются.</div>':''}
+// ==================== РЕНДЕР ====================
+function welcome(){return `<section class="screen" aria-labelledby="screen-title"><div class="welcome"><div class="welcome-copy"><div class="eyebrow">В своём ритме</div><h1 id="screen-title" tabindex="-1"><span class="word"><span style="--i:0">Время</span></span> <span class="word"><span style="--i:1">прислушаться</span></span><br><span class="word"><span style="--i:2"><em>к себе.</em></span></span></h1><p class="intro muted">Несколько простых опросников, чтобы лучше понять своё состояние и подготовиться к разговору с врачом.</p><p class="meta">Анонимно · 10–15 минут · около 50 вопросов</p><button class="button primary magnetic" data-action="start">Начать ${arrow}</button><div class="private">${lock} Без регистрации. Ответы никуда не отправляются.</div></div><div class="art" aria-hidden="true"><svg viewBox="0 0 400 470"><ellipse cx="205" cy="427" rx="100" ry="11" fill="#0B3D2E" opacity=".06"/><path d="M203 426q4-145 50-235M202 426q-32-128-69-187M202 426q13-215-7-291" stroke="#427950" stroke-width="3" fill="none"/><g class="sway"><use href="#banana" x="129" y="19" width="140" height="300" transform="rotate(-12 195 290)"/></g><g class="sway second"><use href="#monstera" x="27" y="165" width="192" height="230" transform="rotate(-24 160 340)"/></g><g class="sway third"><use href="#monstera" x="188" y="113" width="177" height="214" transform="rotate(24 246 300)"/></g><use href="#fern" x="214" y="250" width="105" height="195" transform="rotate(18 230 420)"/><path d="M162 400h84l-11 43q-31 10-62-1Z" fill="url(#pot-stone)" stroke="#A3B39B" stroke-opacity=".4" stroke-width=".7"/><ellipse cx="204" cy="400" rx="42" ry="7" fill="#A8B29D"/><ellipse cx="204" cy="399" rx="38" ry="4.5" fill="#52674A"/><path d="M165 404q39 11 78 0" fill="none" stroke="#F6F4DD" stroke-opacity=".6"/></svg><span class="art-caption">Место для спокойствия</span></div></div><details class="important glass"><summary>Важно знать перед началом</summary><p>Результат опросника не является диагнозом. Это скрининг, который помогает заметить повышенный риск. Диагноз устанавливает врач в ходе клинического интервью. Опросники предназначены для взрослых от 18 лет.</p><p>Русские формулировки взяты с указанного вами сайта potanindoc.ru/o. Возможности переноса результатов зависят от версии и популяции: наличие русского текста само по себе не означает его валидацию. HADS имеет данные российской валидации; русская HCL-8 опубликована по результатам российского исследования.</p><p>Ответы хранятся только в памяти страницы. После обновления или закрытия вкладки они исчезнут. Скопировать, распечатать или передать результаты по электронной почте можно только по вашему действию.</p></details>${demoNotice()}</section>`}
+function progress(){
+  const count=answeredCount(), percent=count/totalQuestions*100;
+  return `<div class="progress" role="progressbar" aria-label="Заполнение опросников" aria-valuemin="0" aria-valuemax="${totalQuestions}" aria-valuenow="${count}" aria-valuetext="Заполнено ${count} из ${totalQuestions}"><div class="progress-label"><span>Ваш путь · ${state.scale+1} из ${scales.length}</span><span>${count} / ${totalQuestions}</span></div><svg class="vine" aria-hidden="true" viewBox="0 0 600 38" preserveAspectRatio="none"><path class="vine-track" d="M3 26C65 26 75 18 120 21S210 29 265 22 350 18 405 23 510 27 593 20"/><path class="vine-line" pathLength="100" style="stroke-dashoffset:${100-percent}" d="M3 26C65 26 75 18 120 21S210 29 265 22 350 18 405 23 510 27 593 20"/>${[75,180,290,410,520].map((x,i)=>`<path class="vine-leaf ${percent>=(i+1)*17?'open':''}" d="M${x} 23q-10-15-19-12 0 12 19 12m0 0q8-16 19-15 0 13-19 15"/>`).join('')}<path class="vine-flower ${count===totalQuestions?'open':''}" d="M590 20c-12-5-7-16 1-9 5-12 16-4 8 3 13 2 6 15-2 9-2 13-15 7-9-1Z"/></svg></div>`;
+}
+function breath(){const q=scales[state.scale];return `<section class="screen" aria-labelledby="screen-title">${progress()}<div class="breath glass">${plant}<div class="eyebrow">Пауза · ${state.scale+1} из ${scales.length} · ${esc(q.name)}</div><h2 id="screen-title" tabindex="-1">${esc(q.title)}</h2><p class="breath-description">${esc(q.description)}</p><p class="instruction">${esc(wording(q.instruction))}</p>${readiness(q)?'<div class="notice">В этом разделе ещё не добавлен подтверждённый бланк. Можно проверить навигацию; баллы по заглушкам не рассчитываются.</div>':''}<p class="muted" style="font-size:11px">${q.questions.length} вопросов · Можно вернуться к любому ответу</p><div class="navigation"><button class="text-button" data-action="back"><span>← Назад</span></button><button class="button primary" data-action="continue">Продолжить ${arrow}</button></div></div></section>`}
+function question(itemIndex=state.item){const q=scales[state.scale],item=q.questions[itemIndex],selected=state.answers[q.id][itemIndex];return `<section class="screen" aria-labelledby="screen-title">${progress()}<div class="question glass ${Number.isInteger(selected)?'has-answer':''}"><div class="question-content"><div class="eyebrow"><span>${esc(q.name)}</span><span>Вопрос ${itemIndex+1} из ${q.questions.length}</span></div>${readiness(q)?'<span class="demo-tag">ПРЕДПРОСМОТР · ТЕКСТ ТРЕБУЕТ ПРОВЕРКИ</span>':''}<h2 id="screen-title" tabindex="-1">${esc(wording(item.text))}</h2><p class="question-context">${esc(q.id==='hads'?'За последнюю неделю':q.id==='asrs5'?'За последние 6 месяцев':q.id==='hcl8'?'Один и тот же период необычного подъёма в прошлом':'Ориентируйтесь на то, что обычно для вас')}</p><div class="answers" role="radiogroup" aria-labelledby="screen-title" aria-describedby="answer-hint">${item.options.map((o,i)=>`<button type="button" class="answer" style="--i:${i}" role="radio" aria-checked="${selected===i}" tabindex="${selected===i||(selected===null&&i===0)?0:-1}" data-answer="${i}"><span class="radio"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="m3 8 3 3 7-7"/></svg></span><span class="answer-text">${esc(wording(o.label))}</span><span class="key" aria-hidden="true">${i+1}</span></button>`).join('')}</div><p class="hint" id="answer-hint" aria-live="polite"></p><div class="navigation"><button class="text-button" data-action="back"><span>← Назад</span></button><button class="button primary next" data-action="next">${state.scale===scales.length-1&&itemIndex===q.questions.length-1?'К результатам':'Далее'} ${arrow}</button></div></div></div></section>`}
+function resultPage(){const data=results();return `<section class="screen results" aria-labelledby="screen-title"><div class="result-heading"><div class="eyebrow">Пауза, которая имеет значение</div><h2 id="screen-title" tabindex="-1">Вы уделили себе время.</h2><p>${data.every(r=>r.available)?'Результаты помогут начать разговор с врачом. Сохраните их удобным способом и возьмите с собой на приём.':'Предпросмотр завершён. Баллы недоступны там, где официальный бланк или ключ ещё не подтверждены.'}</p><p class="profile-summary">${esc(profileSummary())}</p><div class="print-date">${esc(reportDate())}</div></div><div class="results-grid">${data.map((r,i)=>`<article class="result-card glass ${r.high?'warm':''} ${r.available?'':'unavailable'}" style="--i:${i}" data-result="${i}"><div class="ring" aria-hidden="true"><svg viewBox="0 0 80 80"><circle class="ring-track" cx="40" cy="40" r="34"/><circle class="ring-value" cx="40" cy="40" r="34" pathLength="100"/></svg><div class="ring-number"><span class="counter">${r.available?'0':'—'}</span><small>${r.available?'из '+formatScore(r.max):'нет балла'}</small></div></div><div><h3>${esc(r.scale)}${r.scale==='HADS'?' · '+esc(r.title):''}</h3><p class="metric">${esc(r.scale==='HADS'?'Диапазон 0–21':r.title)}${r.available?`<span class="sr-only">. ${formatScore(r.total)} из ${formatScore(r.max)} баллов.</span>`:''}</p><p class="interpretation">${esc(r.message)}</p><div class="bar" aria-hidden="true"><div class="bar-fill"></div></div></div></article>`).join('')}</div>${data.some(r=>!r.available)?'<div class="notice">Это демонстрация интерфейса, а не результат клинического скрининга. Неиспользуемые баллы не заменяются нулями.</div>':''}<section class="doctor-summary glass" aria-labelledby="doctor-summary-title"><h3 id="doctor-summary-title">Сводка для врача-психиатра</h3><div class="doctor-summary-text">${esc(buildClinicianSummary(data,state.profile))}</div></section><p class="result-note scoring-note">ASRS-5: простая сумма 0–24 без пороговой интерпретации. HCL-8: взвешенная сумма 0–22,05, порог 9,3.</p><div class="result-actions"><button class="button primary" data-action="copy">Скопировать результат ${arrow}</button><button class="button secondary" data-action="print">Скачать PDF</button><a class="button secondary" id="email-link" href="${esc(emailHref())}" style="text-decoration:none">Отправить на почту</a></div><div class="copy-panel glass" id="copy-panel" hidden><label for="manual-copy">Автоматическое копирование недоступно. Выделите текст и скопируйте вручную.</label><textarea id="manual-copy" readonly></textarea></div><p class="result-note">Результаты опросников не являются диагнозом. Баллы отражают ответы в рамках конкретной шкалы. Повышенный результат — повод обсудить состояние с врачом; результат ниже порога не исключает трудностей. BIS-brief показывает только сумму, без оценки «норма / повышенный риск».</p><p class="result-note" style="margin-top:10px">«Скачать PDF» открывает окно печати: выберите «Сохранить как PDF». Почта откроется в вашем почтовом приложении; отправку нужно подтвердить в нём.</p><div class="restart"><button class="text-button" data-action="restart"><span>Пройти заново</span></button><div class="restart-confirm glass" id="restart-confirm" hidden>Начать заново? Текущие ответы будут удалены.<div><button class="button secondary" data-action="cancel-restart">Остаться</button><button class="button primary" data-action="confirm-restart">Начать заново</button></div></div></div></section>`}
+// Переходы ограничены содержимым. Листва, свет и стекло не пересоздаются.
+const transitionAnimations=new Set(),questionHeightCache=new Map();
+let lastSelectionAt=-Infinity;
+const phoneLayout=matchMedia('(max-width:1024px) and (pointer:coarse)');
+function syncPhoneDock(){
+ const visible=phoneLayout.matches&&state.screen==='question',dock=document.getElementById('phone-dock');
+ dock.hidden=!visible;document.body.classList.toggle('phone-question',visible);
+ if(!visible)return;
+ const q=scales[state.scale],ready=Number.isInteger(state.answers[q.id][state.item]);
+ dock.querySelectorAll('button').forEach(button=>button.disabled=state.busy);
+ dock.classList.toggle('has-answer',ready);
+ document.getElementById('phone-next-label').textContent=state.scale===scales.length-1&&state.item===q.questions.length-1?'К результатам':'Далее';
+}
+phoneLayout.addEventListener('change',()=>{syncPhoneDock();questionHeightCache.clear();if(state.screen==='question'&&!state.busy)stabilizeQuestion()});
+const MOTION={feedbackHold:640,out:620,in:1120,answer:940,easing:'cubic-bezier(.22,1,.36,1)'};
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+function screenMarkup(){return state.screen==='welcome'?welcome():state.screen==='profile'?profileScreen():state.screen==='breath'?breath():state.screen==='question'?question():resultPage()}
+function announceScreen(){
+  const current=stage.lastElementChild;
+  current?.querySelector('#screen-title')?.focus({preventScroll:true});
+  announcer.textContent=state.screen==='question'?`${scales[state.scale].name}. Вопрос ${state.item+1} из ${scales[state.scale].questions.length}.`:state.screen==='results'?'Опрос завершён. Страница результатов.':state.screen==='breath'?`${scales[state.scale].name}. Инструкция.`:state.screen==='profile'?'Укажите пол и возраст.':'Начало опроса.';
+}
+function stabilizeQuestion(){
+  const card=stage.lastElementChild?.querySelector('.question');if(!card)return;
+  const width=Math.round(card.getBoundingClientRect().width);if(!width)return;
+  const key=scales[state.scale].id+':'+width+':'+(document.fonts?.status||'ready');
+  let height=questionHeightCache.get(key);
+  if(!height){
+    const measure=document.createElement('div');measure.className='question-measure';measure.setAttribute('aria-hidden','true');measure.inert=true;measure.style.width=width+'px';
+    const template=document.createElement('template');
+    scales[state.scale].questions.forEach((_,i)=>{template.innerHTML=question(i);const clone=template.content.querySelector('.question');clone.style.minHeight='0';measure.append(clone)});
+    document.body.append(measure);
+    height=Math.ceil(Math.max(...[...measure.children].map(child=>child.getBoundingClientRect().height)));
+    measure.remove();questionHeightCache.set(key,height);
+  }
+  card.style.minHeight=height+'px';
+}
+function render(focus=true,append=false){
+  cancelAnimationFrame(renderFrame);renderFrame=0;resultObserver?.disconnect();
+  document.body.classList.toggle('show-results',state.screen==='results');
+  document.querySelector('.nature').classList.toggle('celebrate',state.screen==='results');
+  const template=document.createElement('template');template.innerHTML=screenMarkup();
+  if(stage.firstElementChild||state.screen!=='welcome')template.content.querySelector('.screen').classList.add('settled');
+  if(append)stage.append(template.content);else stage.replaceChildren(template.content);
+  syncPhoneDock();
+  if(state.screen==='question')stabilizeQuestion();
+  if(state.screen==='results')animateResults();
+  if(focus)announceScreen();
+}
+function animateFlow(element,keyframes,options){
+  if(reduce()||document.hidden||typeof element.animate!=='function')return Promise.resolve();
+  const animation=element.animate(keyframes,{easing:MOTION.easing,fill:'both',...options});transitionAnimations.add(animation);
+  return animation.finished.catch(()=>{});
+}
+async function morphQuestion(card,direction){
+  const outgoing=card.querySelector('.question-content');
+  const template=document.createElement('template');template.innerHTML=question();
+  const incoming=template.content.querySelector('.question-content');
+  incoming.querySelectorAll('.answer').forEach(answer=>answer.classList.add('settled'));
+  outgoing.inert=true;outgoing.setAttribute('aria-hidden','true');incoming.inert=true;
+  card.classList.remove('has-answer','shake');card.classList.add('question-morph');card.append(incoming);
+  const selected=state.answers[scales[state.scale].id][state.item];
+  if(Number.isInteger(selected))card.classList.add('has-answer');
+  try{
+    await Promise.all([
+      animateFlow(outgoing,[{opacity:1,transform:'translate3d(0,0,0)'},{opacity:0,transform:`translate3d(${-direction*9}px,-3px,0)`}],{duration:MOTION.out}),
+      animateFlow(incoming,[{opacity:0,transform:`translate3d(${direction*12}px,9px,0)`},{opacity:1,transform:'translate3d(0,0,0)'}],{duration:MOTION.in,delay:110}),
+      ...[...incoming.querySelectorAll('.answer')].map((answer,i)=>animateFlow(answer,[{opacity:0,transform:'translate3d(0,9px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}],{duration:MOTION.answer,delay:150+i*65}))
+    ]);
+  }finally{outgoing.remove();incoming.inert=false;card.classList.remove('question-morph');announceScreen()}
+}
+async function navigate(change,direction=1){
+  if(state.busy)return;state.busy=true;syncPhoneDock();stage.setAttribute('aria-busy','true');stage.classList.add('flow-transition');
+  const previousScreen=state.screen,outgoing=stage.lastElementChild,card=outgoing?.querySelector('.question');
+  try{
+    // Быстрый «Далее» не обрывает заливку, галочку и мягкую реакцию выбора.
+    if(previousScreen==='question'&&direction>0&&!reduce()&&!document.hidden){const remaining=MOTION.feedbackHold-(performance.now()-lastSelectionAt);if(remaining>0)await delay(remaining)}
+    change();syncPhoneDock();
+    if(reduce()||document.hidden){render();return}
+    if(previousScreen==='question'&&state.screen==='question'&&card){await morphQuestion(card,direction);return}
+    render(false,true);const incoming=stage.lastElementChild;
+    if(outgoing){outgoing.inert=true;outgoing.setAttribute('aria-hidden','true')}
+    incoming.inert=true;
+    try{
+      await Promise.all([
+        outgoing?animateFlow(outgoing,[{opacity:1,transform:'translate3d(0,0,0)'},{opacity:0,transform:`translate3d(${-direction*8}px,-5px,0)`}],{duration:MOTION.out}):Promise.resolve(),
+        animateFlow(incoming,[{opacity:0,transform:`translate3d(${direction*10}px,12px,0)`},{opacity:1,transform:'translate3d(0,0,0)'}],{duration:MOTION.in,delay:100})
+      ]);
+    }finally{outgoing?.remove();incoming.inert=false;announceScreen()}
+    if(window.scrollY>stage.offsetTop+180)stage.scrollIntoView({block:'start',behavior:'smooth'});
+  }finally{transitionAnimations.forEach(animation=>animation.cancel());transitionAnimations.clear();stage.classList.remove('flow-transition');stage.removeAttribute('aria-busy');state.busy=false;syncPhoneDock()}
+}
+function next(){
+  const q=scales[state.scale];
+  if(!Number.isInteger(state.answers[q.id][state.item])){
+    const card=stage.querySelector('.question');card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake');document.getElementById('answer-hint').textContent='Выберите, пожалуйста, один вариант ответа.';return;
+  }
+  navigate(()=>{if(state.item<q.questions.length-1)state.item++;else if(state.scale<scales.length-1){state.scale++;state.item=0;state.screen='breath'}else{state.screen='results';state.completedAt=new Date()}});
+}
+function back(){
+  navigate(()=>{
+    if(state.screen==='question'){if(state.item>0)state.item--;else state.screen='breath'}
+    else if(state.screen==='breath'){if(state.scale>0){state.scale--;state.item=scales[state.scale].questions.length-1;state.screen='question'}else state.screen='profile'}
+  },-1);
+}
+function choose(index,element){
+  if(state.busy||state.screen!=='question')return;
+  const q=scales[state.scale];if(!q.questions[state.item].options[index])return;
+  state.answers[q.id][state.item]=index;lastSelectionAt=performance.now();
+  stage.querySelectorAll('[data-answer]').forEach(button=>{const checked=Number(button.dataset.answer)===index;button.setAttribute('aria-checked',String(checked));button.tabIndex=checked?0:-1;});
+  const card=stage.querySelector('.question');card.classList.remove('shake','has-answer');void card.offsetWidth;card.classList.add('has-answer');document.getElementById('answer-hint').textContent='';updateProgress();syncPhoneDock();
+  if(element&&!reduce()) petals(element);
+}
+function updateProgress(){const count=answeredCount(), percent=count/totalQuestions*100,progressNode=stage.querySelector('.progress');if(!progressNode)return;progressNode.setAttribute('aria-valuenow',count);progressNode.setAttribute('aria-valuetext',`Заполнено ${count} из ${totalQuestions}`);progressNode.querySelector('.progress-label span:last-child').textContent=`${count} / ${totalQuestions}`;progressNode.querySelector('.vine-line').style.strokeDashoffset=100-percent;progressNode.querySelectorAll('.vine-leaf').forEach((leaf,i)=>leaf.classList.toggle('open',percent>=(i+1)*17));progressNode.querySelector('.vine-flower').classList.toggle('open',count===totalQuestions);}
+// ==================== ЭКСПОРТ И УТИЛИТЫ ====================
+function reportDate(){return (state.completedAt||new Date()).toLocaleString('ru-RU',{dateStyle:'long',timeStyle:'short',timeZone:'Europe/Moscow'})+' МСК'}
+function reportText(){return ['ВЫДОХ · Результаты скрининговых опросников',reportDate(),profileSummary(),QUESTIONNAIRES.asrs5.scoringNote,QUESTIONNAIRES.hcl8.scoringNote,isDemo()?'ПРЕДПРОСМОТР. Неподтверждённые бланки не используются для расчёта.':'',...results().map(r=>`${r.scale}${r.scale==='HADS'?' · '+r.title:''}: ${r.available?formatScore(r.total)+' / '+formatScore(r.max)+' баллов':'не рассчитано'}. ${r.message}.`),'','СВОДКА ДЛЯ ВРАЧА-ПСИХИАТРА',buildClinicianSummary(results(),state.profile),'','Результаты не являются диагнозом. Диагноз устанавливает врач при клиническом интервью. Результат ниже порога не исключает расстройства. BIS-brief не имеет единого диагностического порога.'].filter((line,i)=>line||i>1).join('\n')}
+function emailHref(){return `mailto:${DOCTOR_EMAIL}?subject=${encodeURIComponent('Результаты опросников перед приёмом')}&body=${encodeURIComponent(reportText())}`}
+function toast(message){clearTimeout(toastTimer);const node=document.getElementById('toast');node.textContent=message;node.classList.add('visible');toastTimer=setTimeout(()=>node.classList.remove('visible'),3500)}
+async function copyResults(){
+  const text=reportText();let copied=false;const previous=document.activeElement;
+  try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);copied=true}}catch{}
+  if(!copied){const area=document.createElement('textarea');area.value=text;area.setAttribute('aria-label','Текст результатов');area.style.cssText='position:fixed;left:0;top:0;opacity:0;pointer-events:none';document.body.append(area);area.focus();area.select();area.setSelectionRange(0,area.value.length);try{copied=document.execCommand('copy')}catch{}area.remove();previous?.focus({preventScroll:true});}
+  if(copied)toast('Скопировано');else{const panel=document.getElementById('copy-panel'),area=document.getElementById('manual-copy');panel.hidden=false;area.value=text;area.focus();area.select();toast('Выделите и скопируйте текст вручную');}
+}
+function reset(){scales.forEach(q=>state.answers[q.id].fill(null));state.scale=0;state.item=0;state.screen='welcome';state.profile={sex:'',age:''};state.completedAt=null;}
+// ==================== АНИМАЦИИ ====================
+function animateResults(){
+  const data=results(),pending=new Set();
+  function run(card){const index=Number(card.dataset.result),r=data[index];if(!r.available)return;const fraction=Math.max(0,Math.min(1,r.total/r.max));card.querySelector('.ring-value').style.transitionDelay=`${index*120}ms`;card.querySelector('.bar-fill').style.transitionDelay=`${index*120}ms`;card.querySelector('.ring-value').style.strokeDashoffset=100-fraction*100;card.querySelector('.bar-fill').style.transform=`scaleX(${fraction})`;if(reduce()){card.querySelector('.counter').textContent=formatScore(r.total);return}const start=performance.now()+index*120;pending.add({card,r,start});if(!renderFrame)renderFrame=requestAnimationFrame(tick);}
+  function tick(now){renderFrame=0;for(const item of pending){if(!item.card.isConnected){pending.delete(item);continue}const t=Math.max(0,Math.min(1,(now-item.start)/1200)),eased=1-Math.pow(1-t,3);item.card.querySelector('.counter').textContent=formatScore(item.r.total*eased,item.r.decimals);if(t===1)pending.delete(item)}if(pending.size)renderFrame=requestAnimationFrame(tick);}
+  if('IntersectionObserver' in window){resultObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){run(entry.target);resultObserver.unobserve(entry.target)}}),{threshold:.2});stage.querySelectorAll('.result-card').forEach(card=>resultObserver.observe(card));}
+  else stage.querySelectorAll('.result-card').forEach(run);
+}
+function finishResultAnimations(){if(state.screen!=='results')return;cancelAnimationFrame(renderFrame);renderFrame=0;results().forEach((r,i)=>{const card=stage.querySelector(`[data-result="${i}"]`);if(!r.available||!card)return;card.querySelector('.counter').textContent=formatScore(r.total);card.querySelector('.ring-value').style.strokeDashoffset=100-r.total/r.max*100;card.querySelector('.bar-fill').style.transform=`scaleX(${r.total/r.max})`;});resultObserver?.disconnect();}
+const selectionAnimations=new Set();
+let selectionSequence=0,selectionTimer;
+const selectionLeaf='<svg viewBox="0 0 24 34" aria-hidden="true"><path d="M12 32C2 26-1 12 19 1c6 14 4 25-7 31Z" fill="currentColor"/><path d="M10 33Q11 17 18 5M12 25 6 18m8-1 6-5" fill="none" stroke="#EFF6D9" stroke-opacity=".65" stroke-width=".8"/></svg>';
+function clearSelectionEffects(){
+ clearTimeout(selectionTimer);selectionAnimations.forEach(animation=>animation.cancel());selectionAnimations.clear();
+ document.getElementById('selection-effects')?.replaceChildren();
+}
+function petals(button){
+ if(reduce()||document.hidden)return;clearSelectionEffects();
+ const host=document.getElementById('selection-effects'),rect=button.getBoundingClientRect();
+ const plan=selectionPlan(scales[state.scale].id,state.item,selectionSequence++);
+ if(!host||rect.bottom<0||rect.top>innerHeight)return;
+ for(let i=0;i<plan.count;i++){
+  const node=document.createElement('span');node.className='selection-particle effect-'+plan.mode;
+  const water=plan.mode==='water';
+  const x=water?rect.right-38:rect.left+rect.width*(.25+i*.12);
+  const y=water?rect.top+rect.height/2:rect.top+rect.height*.55;
+  node.style.left=Math.max(20,Math.min(innerWidth-20,x))+'px';
+  node.style.top=Math.max(12,Math.min(innerHeight-20,y))+'px';
+  node.style.color=['#548B60','#8CAB78','#3B7758','#779F69','#A0B77E'][(i+plan.variant)%5];
+  if(!water)node.innerHTML=selectionLeaf;
+  host.append(node);
+  if(typeof node.animate==='function'){
+   const animation=node.animate(selectionKeyframes(plan.mode,i,plan.variant),{duration:plan.duration,delay:i*32,easing:'cubic-bezier(.25,.8,.3,1)',fill:'both'});
+   selectionAnimations.add(animation);
+   animation.finished.catch(()=>{}).finally(()=>{selectionAnimations.delete(animation);node.remove()});
+  }else node.remove();
+ }
+ selectionTimer=setTimeout(clearSelectionEffects,plan.duration+200);
+}
+function ripple(event){if(reduce())return;const button=event.target.closest('.button,.answer,.motion');if(!button)return;const box=button.getBoundingClientRect(),node=document.createElement('span');node.className='ripple';node.setAttribute('aria-hidden','true');node.style.setProperty('--diameter',Math.max(box.width,box.height)*2+'px');node.style.setProperty('--rx',(event.detail?event.clientX-box.left:box.width/2)+'px');node.style.setProperty('--ry',(event.detail?event.clientY-box.top:box.height/2)+'px');button.append(node);setTimeout(()=>node.remove(),750);}
+const pollen=document.getElementById('pollen');for(let i=0;i<16;i++){const p=document.createElement('i');p.className='particle';p.style.cssText=`--x:${(i*6.7+3)%100}%;--size:${2+i%3}px;--duration:${22+i%5*3}s;--delay:${-i*3.2}s`;pollen.append(p)}
+let px=0,py=0,tx=0,ty=0,parallaxFrame=0;
+const layers=[...document.querySelectorAll('[data-depth]')];
+function parallaxTick(){parallaxFrame=0;if(reduce()||document.hidden)return;px+=(tx-px)*.055;py+=(ty-py)*.055;layers.forEach(layer=>{const d=Number(layer.dataset.depth);layer.style.transform=`translate3d(${px*d}px,${py*d}px,0)`});if(Math.abs(tx-px)+Math.abs(ty-py)>.002)parallaxFrame=requestAnimationFrame(parallaxTick);}
+function parallax(){if(!parallaxFrame&&!reduce()&&!document.hidden)parallaxFrame=requestAnimationFrame(parallaxTick)}
+window.addEventListener('pointermove',event=>{if(!pointerFine.matches||reduce())return;tx=(event.clientX/innerWidth-.5)*.7;ty=(event.clientY/innerHeight-.5)*.7;parallax();const main=event.target.closest('.magnetic');if(main){const box=main.getBoundingClientRect();main.style.transform=`translate(${(event.clientX-box.left-box.width/2)*.07}px,${(event.clientY-box.top-box.height/2)*.1}px)`;}},{passive:true});
+document.addEventListener('pointerout',event=>{const button=event.target.closest('.magnetic');if(button&&!button.contains(event.relatedTarget))button.style.transform='';},{passive:true});
+window.addEventListener('scroll',()=>{if(pointerFine.matches||reduce())return;tx=0;ty=Math.min(.45,scrollY/1800);parallax();},{passive:true});
+function applyMotion(){root.classList.toggle('calm',calm);const effective=reduce(),button=document.getElementById('motion');button.setAttribute('aria-pressed',String(effective));button.setAttribute('aria-label',effective?'Движение уменьшено':'Уменьшить движение');button.title=effective?'Движение уменьшено':'Уменьшить движение';if(effective){clearSelectionEffects();transitionAnimations.forEach(animation=>{try{animation.finish()}catch{animation.cancel()}});cancelAnimationFrame(parallaxFrame);parallaxFrame=0;px=py=tx=ty=0;layers.forEach(layer=>layer.style.transform='');document.querySelector('.magnetic')?.style.removeProperty('transform');finishResultAnimations();}}
+systemMotion.addEventListener('change',applyMotion);
+document.addEventListener('visibilitychange',()=>{root.classList.toggle('paused',document.hidden);if(document.hidden){clearSelectionEffects();transitionAnimations.forEach(animation=>{try{animation.finish()}catch{animation.cancel()}});cancelAnimationFrame(parallaxFrame);parallaxFrame=0;finishResultAnimations()}else parallax();});
+window.addEventListener('beforeprint',()=>{clearSelectionEffects();finishResultAnimations()});
+// ==================== СОБЫТИЯ И ДОСТУПНОСТЬ ====================
+document.addEventListener('click',event=>{
+  if(event.target.closest('#motion')){calm=!calm;applyMotion();toast(systemMotion.matches?'В системе включено уменьшение движения':calm?'Спокойный режим включён':'Анимации включены');return;}
+  if(state.busy)return;ripple(event);
+  const answer=event.target.closest('[data-answer]');if(answer){choose(Number(answer.dataset.answer),answer);return;}
+  const action=event.target.closest('[data-action]')?.dataset.action;
+  if(action==='start')navigate(()=>{state.screen='profile'});
+  if(action==='profile-back')navigate(()=>{state.screen='welcome'},-1);
+  if(action==='continue'){if(Object.keys(validateProfile(state.profile)).length){navigate(()=>{state.screen='profile'});return}navigate(()=>{state.screen='question';state.item=0})}
+  if(action==='next')next();if(action==='back')back();if(action==='copy')copyResults();
+  if(action==='print'){finishResultAnimations();window.print();}
+  if(action==='restart'){document.getElementById('restart-confirm').hidden=false;stage.querySelector('[data-action="cancel-restart"]').focus();}
+  if(action==='cancel-restart'){document.getElementById('restart-confirm').hidden=true;stage.querySelector('[data-action="restart"]').focus();}
+  if(action==='confirm-restart')navigate(reset,-1);
+});
+stage.addEventListener('submit',event=>{if(event.target.id==='profile-form')submitProfile(event)});
+stage.addEventListener('input',event=>{
+  if(state.screen!=='profile')return;
+  if(event.target.name==='age')state.profile.age=event.target.value;
+  if(event.target.name==='sex')state.profile.sex=event.target.value;
+});
+stage.addEventListener('keydown',event=>{
+  if(state.screen!=='question'||state.busy||event.altKey||event.ctrlKey||event.metaKey)return;
+  const options=[...stage.querySelectorAll('[data-answer]')],focused=event.target.closest('[data-answer]'),q=scales[state.scale];
+  if(/^[1-5]$/.test(event.key)){const index=Number(event.key)-1;if(options[index]){event.preventDefault();choose(index,options[index]);options[index].focus();}return;}
+  if(focused&&['ArrowDown','ArrowRight','ArrowUp','ArrowLeft','Home','End'].includes(event.key)){
+    event.preventDefault();let i=Number(focused.dataset.answer);i=event.key==='Home'?0:event.key==='End'?options.length-1:(i+(['ArrowDown','ArrowRight'].includes(event.key)?1:-1)+options.length)%options.length;choose(i,options[i]);options[i].focus();
+  }
+  // Enter на варианте выбирает его (нативный click); повторный Enter идёт далее.
+  if(event.key==='Enter'&&focused&&state.answers[q.id][state.item]===Number(focused.dataset.answer)){event.preventDefault();next();}
+  else if(event.key==='Enter'&&event.target.id==='screen-title'){event.preventDefault();next();}
+});
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(state.screen==='question'&&!state.busy)stabilizeQuestion()},180)},{passive:true});
+document.fonts?.addEventListener('loadingdone',()=>{questionHeightCache.clear();if(state.screen==='question'&&!state.busy)stabilizeQuestion()});
+applyMotion();render(false);
+})();
+</script>
+</body>
+</html>
